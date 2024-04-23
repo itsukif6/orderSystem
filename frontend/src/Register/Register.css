@@ -1,0 +1,41 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* 讓 body 填滿整個視口高度 */
+    
+}
+
+#register-text{
+    color: #ffffff;
+}
+
+#register-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    
+
+    /* gray background */
+    background-image: url('./start.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+
+    /* 
+    for test:
+    wonhee's background <3
+    background-image: url('./wonhee.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover; */
+}
+
+#register-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

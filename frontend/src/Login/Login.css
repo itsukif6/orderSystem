@@ -1,0 +1,61 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* 讓 body 填滿整個視口高度 */
+    
+}
+
+#components-form-demo-normal-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    
+
+    /* gray background */
+    background-image: url('./start.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+
+    /* 
+    for test:
+    wonhee's background <3
+    background-image: url('./wonhee.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover; */
+}
+#login-string{
+    color: antiquewhite;
+    font-family: SimHei, SimSun;
+}
+
+#components-form-demo-normal-login .ant-form-item-control-input-content{
+    text-align:center;
+    
+}
+
+#components-form-demo-normal-login .login-form {
+    max-width: 300px;
+    
+}
+
+.register {
+    position: absolute;
+    right: 0;
+}
+
+#components-form-demo-normal-login .login-form-forgot {
+    float: right;
+    
+}
+
+#components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
+    float: left;
+    
+}
+

@@ -1,0 +1,84 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    /* 讓 body 填滿整個視口高度 */
+
+}
+
+.food-text{
+    height: 2vh;
+}
+
+.broadImg {
+    height: 25vh;
+}
+
+.foodImg {
+    width: 200px;
+    height: 200px;
+    border-style: ridge;
+    border-width: 9px;
+}
+
+.img-text{
+    display: inline-block;
+}
+
+.order-num{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-direction: row;
+}
+/* .broadImg{
+    width: 800px;
+    height: 300px;
+    border-style:ridge;
+    border-width:9px;
+    
+} */
+
+#full-menu-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+
+
+    /* gray background */
+    background-image: url('./restaurant.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+
+
+#menu-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 92vh;
+    width: 150vh;
+    flex-direction: row;
+
+    border-style: ridge;
+    border-width: 9px;
+
+    background-image: url('./gray.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.plus-minus-button {
+    width: 0.5cm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

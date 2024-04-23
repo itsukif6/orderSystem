@@ -1,0 +1,27 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+#welcome-component {
+    font-family: SimHei, SimSun;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    
+
+    /* gray background */
+    background-image: url('./start.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#hello-text {
+    color: #ffffff;
+}
