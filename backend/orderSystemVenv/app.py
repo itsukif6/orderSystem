@@ -49,7 +49,9 @@ def register():
 @app.route('/menu', methods=['GET', 'POST'])
 def menu():
     if request.method == "POST":   
-        return("123")     
+        data = request.json
+        print(data)
+        return("true")     
 
 if __name__ == '__main__':
     app.run(debug=True)

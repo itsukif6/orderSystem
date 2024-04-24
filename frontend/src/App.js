@@ -7,6 +7,7 @@ import Welcome from './Welcome/Welcome';
 import Login from './Login/Login';
 import Menu from './Menu/Menu';
 import Register from './Register/Register';
+import Order from './Order/Order';
 import './App.css';
 
 const App = () => {
@@ -26,6 +27,10 @@ const App = () => {
     {
       path: "/Register",
       element: <Register />,
+    },
+    {
+      path: "/Order",
+      element: <Order />,
     },
   ])
 

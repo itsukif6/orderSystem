@@ -34,6 +34,8 @@ class DB():
             for row in password_rows:
                 if str(inputPassword) == row[0]:
                     print("Password found")
+                    self.cursor.execute("UPDATE UserData SET loginstatus = 1 WHERE username = ? AND password = ?", (inputUsername, inputPassword))
+                    self.conn.commit()
                     return True
             print("Password not found")
             return False
@@ -41,11 +43,25 @@ class DB():
             print(e)
             return e
         
+    # create new account
     def insertUsernameAndPassword(self, username, password):
         try:
-            if self.cursor.execute("INSERT INTO UserData (username, password) VALUES (?, ?);", (username, password)):
+            if self.cursor.execute("INSERT INTO UserData (username, password, loginstatus) VALUES (?, ?, ?);", (username, password, 0)):
                 self.conn.commit()
                 return True
         except sqlite3.Error as e:
             print("Error:",e)
             return e
+
+    # # get login status
+    # def checkLoginStatus(self, username, password):
+        
+    # # new order
+    # def insertOrderByNumberAndValue(self, number, value):
+    #     try:
+    #         if self.cursor.execute("INSERT INTO UserData (username, password) VALUES (?, ?);", (username, password)):
+    #             self.conn.commit()
+    #             return True
+    #     except sqlite3.Error as e:
+    #         print("Error:",e)
+    #         return e
