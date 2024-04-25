@@ -1,8 +1,9 @@
-﻿import React from 'react';
-import './Welcome.css';
+﻿import React from "react";
+import "./Welcome.css";
 function Welcome() {
   const handleClick = () => {
-    window.location.assign("http://localhost:3001/Login");
+    // change port if 3001 or 3000
+    window.location.assign("http://localhost:3000/Login");
   };
 
   return (
@@ -10,7 +11,7 @@ function Welcome() {
       <h1 id="hello-text">歡迎光臨!</h1>
       <button onClick={handleClick}>開始</button>
     </div>
-  )
+  );
 }
 
 export default Welcome;
