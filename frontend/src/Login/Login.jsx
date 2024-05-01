@@ -20,6 +20,7 @@ const User = createContext("");
 
 const App = () => {
   const [usernamevalue, setValue] = useState("");
+  console.log(usernamevalue);
   // 傳資料用
   const onFinish = (values) => {
     console.log("Received values of form: ", values); // values為要傳送的資料

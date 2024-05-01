@@ -53,15 +53,27 @@ class DB():
             print("Error:",e)
             return e
 
-    # # get login status
-    # def checkLoginStatus(self, username, password):
+    # get login status
+    # if login: return True
+    # else: return False
+    def checkLoginStatus(self, username):
+        try:
+            loginstatus =  self.cursor.execute("SELECT loginstatus FROM UserData WHERE username = ?;", (username,))
+            print(loginstatus)
+            if loginstatus == 1:
+                return True
+            else: 
+                return False
+        except sqlite3.Error as e:
+            print("Error:",e)
+            return e
         
-    # # new order
-    # def insertOrderByNumberAndValue(self, number, value):
-    #     try:
-    #         if self.cursor.execute("INSERT INTO UserData (username, password) VALUES (?, ?);", (username, password)):
-    #             self.conn.commit()
-    #             return True
-    #     except sqlite3.Error as e:
-    #         print("Error:",e)
-    #         return e
+    # new order insert to DB
+    def insertOrderByNumberAndValue(self, username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special):
+        try:
+            if self.cursor.execute("INSERT INTO OrderData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special)):
+                self.conn.commit()
+                return True
+        except sqlite3.Error as e:
+            print("Error:",e)
+            return e
