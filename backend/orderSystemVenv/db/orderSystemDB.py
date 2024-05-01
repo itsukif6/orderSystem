@@ -1,17 +1,19 @@
 ﻿import sqlite3
+
 test_dbfile = "orderSystemVenv\db\orderSystemDB.db"
 dbfile = "db\orderSystemDB.db"
 
-class DB():
+
+class DB:
     def __init__(self):
-        self.conn = sqlite3.connect(dbfile,check_same_thread=False)
+        self.conn = sqlite3.connect(dbfile, check_same_thread=False)
         self.cursor = self.conn.cursor()
-        
+
     def close_connection(self):
         # 關閉游標和資料庫連接
         self.cursor.close()
         self.conn.close()
-        
+
     # search for username
     def searchUsername(self, inputUsername):
         try:
@@ -26,15 +28,20 @@ class DB():
         except sqlite3.Error as e:
             print(e)
             return e
-        
+
     # check for password
     def checkPassword(self, inputUsername, inputPassword):
         try:
-            password_rows = self.cursor.execute("SELECT password FROM UserData WHERE username = ?;", (inputUsername,))
+            password_rows = self.cursor.execute(
+                "SELECT password FROM UserData WHERE username = ?;", (inputUsername,)
+            )
             for row in password_rows:
                 if str(inputPassword) == row[0]:
                     print("Password found")
-                    self.cursor.execute("UPDATE UserData SET loginstatus = 1 WHERE username = ? AND password = ?", (inputUsername, inputPassword))
+                    self.cursor.execute(
+                        "UPDATE UserData SET loginstatus = 1 WHERE username = ? AND password = ?",
+                        (inputUsername, inputPassword),
+                    )
                     self.conn.commit()
                     return True
             print("Password not found")
@@ -42,15 +49,18 @@ class DB():
         except sqlite3.Error as e:
             print(e)
             return e
-        
+
     # create new account
     def insertUsernameAndPassword(self, username, password):
         try:
-            if self.cursor.execute("INSERT INTO UserData (username, password, loginstatus) VALUES (?, ?, ?);", (username, password, 0)):
+            if self.cursor.execute(
+                "INSERT INTO UserData (username, password, loginstatus) VALUES (?, ?, ?);",
+                (username, password, 0),
+            ):
                 self.conn.commit()
                 return True
         except sqlite3.Error as e:
-            print("Error:",e)
+            print("Error:", e)
             return e
 
     # get login status
@@ -58,22 +68,78 @@ class DB():
     # else: return False
     def checkLoginStatus(self, username):
         try:
-            loginstatus =  self.cursor.execute("SELECT loginstatus FROM UserData WHERE username = ?;", (username,))
+            loginstatus = self.cursor.execute(
+                "SELECT loginstatus FROM UserData WHERE username = ?;", (username,)
+            )
             print(loginstatus)
             if loginstatus == 1:
                 return True
-            else: 
+            else:
                 return False
         except sqlite3.Error as e:
-            print("Error:",e)
+            print("Error:", e)
             return e
-        
+
     # new order insert to DB
-    def insertOrderByNumberAndValue(self, username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special):
+    def insertOrderByNumberAndValue(
+        self,
+        username,
+        chicken,
+        pizza,
+        steak,
+        friedRiceCake,
+        lobster,
+        coke,
+        greenTea,
+        bubbleTea,
+        blackTea,
+        honey,
+        donuts,
+        icecream,
+        marshmallow,
+        chocolate,
+        special,
+    ):
         try:
-            if self.cursor.execute("INSERT INTO OrderData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special)):
+            if self.cursor.execute(
+                "INSERT INTO OrderData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                (
+                    username,
+                    chicken,
+                    pizza,
+                    steak,
+                    friedRiceCake,
+                    lobster,
+                    coke,
+                    greenTea,
+                    bubbleTea,
+                    blackTea,
+                    honey,
+                    donuts,
+                    icecream,
+                    marshmallow,
+                    chocolate,
+                    special,
+                ),
+            ):
                 self.conn.commit()
                 return True
         except sqlite3.Error as e:
-            print("Error:",e)
+            print("Error:", e)
+            return e
+
+    # get username with login status
+    def getLoginUsername(self):
+        try:
+            self.cursor.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            )
+            username = self.cursor.fetchone()  # Fetch the result
+            if username is not None:
+                username = username[0]  # Extract the username from the tuple
+                return username
+            else:
+                return False
+        except sqlite3.Error as e:
+            print("Error:", e)
             return e

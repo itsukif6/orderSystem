@@ -8,22 +8,19 @@ let headers = {
   Accept: "application/json",
 };
 
-//以下是API文件中提及必寫的主體参數。而以下這個產品資料是六角學院提供的。
-// let body = {
-//     "title": "Abysswalker",
-//     "category": "T-Shirts",
-//     "content": "Its wearer, like Artorias himself, can traverse the Abyss.",
-//     "description": "This official Dark Souls shirt was designed by Nina Matsumoto and printed on soft 100% cotton shirts by Forward. Each one comes with a bonus sticker.",
-//     "imageUrl": ["https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80"]
-// }
+
+
+// 原本用來傳username的,現在換方法了
 const User = createContext("");
 
 const App = () => {
+  // 原本用來傳username的,現在換方法了
   const [usernamevalue, setValue] = useState("");
-  console.log(usernamevalue);
+  
   // 傳資料用
   const onFinish = (values) => {
     console.log("Received values of form: ", values); // values為要傳送的資料
+
     fetch(
       "http://localhost:5000/login", //api
       {
@@ -45,7 +42,7 @@ const App = () => {
     setValue(values["username"]);
   };
   const handleRegisterClick = () => {
-    window.location.assign("http://localhost:3001/Register");
+    window.location.assign("http://localhost:3000/Register");
   };
 
   return (

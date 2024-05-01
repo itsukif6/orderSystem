@@ -1,1 +1,30 @@
-﻿
+﻿body {
+    background-image: url('./start.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#menu {
+    position: absolute;
+    right: 0;
+    border: 5.5px solid rgb(245, 245, 245);
+    border-style: double;
+    
+    border-radius: 5px;
+}
+
+.ant-menu-title-content{
+    color: #000;
+}
+svg{
+    color: #000;
+}
+.ant-menu-submenu-title{
+    color: #000;
+}
+
+.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light.css-dev-only-do-not-override-1kuana8{
+    background-color: rgb(245, 245, 245);
+}

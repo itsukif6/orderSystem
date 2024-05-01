@@ -1,7 +1,7 @@
 ﻿import sys
 sys.path.append("./db")
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from db.orderSystemDB import DB
 db = DB()
@@ -50,8 +50,24 @@ def register():
 def menu():
     if request.method == "POST":   
         data = request.json
-        print(data)
-        return("true")     
+        username = data.get("username")
+        value = data.get("value")
+        print(username, value)
+        if db.insertOrderByNumberAndValue(username, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14]):
+            return("true")    
+        else: 
+            return("false") 
+
+# get username from DB with login status
+@app.route('/getUsername', methods=['GET'])
+def getUsername():
+    if request.method == "GET":
+        username = db.getLoginUsername()
+        if username:
+            return jsonify({"username": username})
+        else:
+            return jsonify({"error": "Username not found"}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
