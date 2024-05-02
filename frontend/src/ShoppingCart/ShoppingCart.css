@@ -1,0 +1,31 @@
+#shopping-cart-full-component{
+    height: 100vh;
+    background-image: url('./Cart.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#shopping-cart-component{
+    height: 40rem;
+    width: 80rem;
+    background-image: url('./gray.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+
+    border-radius: 1rem;
+    border: 3rem;
+    border-style: double;
+    border-width: 0.3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

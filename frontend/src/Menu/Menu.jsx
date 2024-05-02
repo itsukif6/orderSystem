@@ -16,8 +16,12 @@ import marshmallowImg from "./marshmallow.jpg";
 import chocolateImg from "./chocolate.jpg";
 import specialImg from "./special.png";
 import { useRef } from "react";
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import {
+  AppstoreOutlined,
+  MailOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import { Menu } from "antd";
 
 let headers = {
   "Content-Type": "application/json",
@@ -25,80 +29,80 @@ let headers = {
 };
 const items = [
   {
-    key: 'sub01',
-    label: 'Contact',
+    key: "sub01",
+    label: "Contact",
     icon: <MailOutlined />,
     children: [
       {
-        key: 'g1',
-        label: 'Web Developer',
-        type: 'group',
+        key: "g1",
+        label: "Web Developer",
+        type: "group",
         children: [
           {
-            key: '11',
-            label: 'GitHub',
+            key: "11",
+            label: "GitHub",
           },
           {
-            key: '12',
-            label: 'Gmail',
+            key: "12",
+            label: "Gmail",
           },
         ],
       },
       {
-        key: 'g2',
-        label: 'Restaurant Owner',
-        type: 'group',
+        key: "g2",
+        label: "Restaurant Owner",
+        type: "group",
         children: [
           {
-            key: '13',
-            label: 'Gmail',
+            key: "13",
+            label: "Gmail",
           },
         ],
       },
     ],
   },
   {
-    key: 'sub02',
-    label: 'Pages',
+    key: "sub02",
+    label: "Pages",
     icon: <AppstoreOutlined />,
     children: [
       {
-        key: '21',
-        label: 'Welcome',
+        key: "21",
+        label: "Welcome",
       },
       {
-        key: '22',
-        label: 'Log In',
+        key: "22",
+        label: "Log In",
       },
       {
-        key: '23',
-        label: 'Menu',
+        key: "23",
+        label: "Menu",
       },
       {
-        key: '24',
-        label: 'Order Info',
+        key: "24",
+        label: "Order Info",
       },
       {
-        key: '25',
-        label: 'Shopping Cart',
+        key: "25",
+        label: "Shopping Cart",
       },
       {
-        key: '26',
-        label: 'Order Track',
+        key: "26",
+        label: "Order Track",
       },
     ],
   },
   {
-    type: 'divider',
+    type: "divider",
   },
   {
-    key: 'sub03',
-    label: 'Setting',
+    key: "sub03",
+    label: "Setting",
     icon: <SettingOutlined />,
     children: [
       {
-        key: '31',
-        label: 'Log Out',
+        key: "31",
+        label: "Log Out",
       },
     ],
   },
@@ -124,7 +128,6 @@ function OrderMenu() {
       });
   };
 
-
   const pushRef = (el) => {
     if (el && el.name) {
       ref.current[el.name] = el;
@@ -140,7 +143,7 @@ function OrderMenu() {
         headers: headers,
         body: JSON.stringify({
           value: Object.keys(ref.current).map((key) => ref.current[key].value),
-          username: username
+          username: username,
         }), // values為要傳送的資料
       }
     )
@@ -176,16 +179,28 @@ function OrderMenu() {
   // onClickMenu API
   const onClickMenu = (e) => {
     // click items component links
-    console.log('click ', e);
+    console.log("click ", e);
     if (e.key === "11") {
       // github API
-      window.open("https://github.com/itsukif6", "_blank", "width=1200,height=800");
+      window.open(
+        "https://github.com/itsukif6",
+        "_blank",
+        "width=1200,height=800"
+      );
     } else if (e.key === "12") {
       // developer gmail API
-      window.open("https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRlQQMQvfXBMvcxvHpDlgNdsDzJqzRpSTmgjPjzRdKFfGWcnJvhksBPPrZtKqcmnjqjWjCv", "_blank", "width=1200,height=800");
+      window.open(
+        "https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRlQQMQvfXBMvcxvHpDlgNdsDzJqzRpSTmgjPjzRdKFfGWcnJvhksBPPrZtKqcmnjqjWjCv",
+        "_blank",
+        "width=1200,height=800"
+      );
     } else if (e.key === "13") {
       // owner gmail API
-      window.open("https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRlQQMQvfXBMvcxvHpDlgNdsDzJqzRpSTmgjPjzRdKFfGWcnJvhksBPPrZtKqcmnjqjWjCv", "_blank", "width=1200,height=800");
+      window.open(
+        "https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRlQQMQvfXBMvcxvHpDlgNdsDzJqzRpSTmgjPjzRdKFfGWcnJvhksBPPrZtKqcmnjqjWjCv",
+        "_blank",
+        "width=1200,height=800"
+      );
     } else if (e.key === "21") {
       // root API
       window.location.assign("http://localhost:3000");
@@ -207,19 +222,18 @@ function OrderMenu() {
     } else if (e.key === "31") {
       // log Out
     }
-
   };
   return (
     <div id="full-menu-component">
       {/* menu div */}
-      <div id='menu'>
+      <div id="menu">
         <Menu
           onClick={onClickMenu}
           style={{
             width: 170,
           }}
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
+          defaultSelectedKeys={["1"]}
+          defaultOpenKeys={["sub1"]}
           mode="inline"
           items={items}
         />
@@ -379,6 +393,7 @@ function OrderMenu() {
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div className="img-text">
+              <h4 className="food-name-text">綠茶</h4>
               <img src={greenTeaImg} alt="greenTeaImg" className="foodImg" />
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
@@ -402,6 +417,7 @@ function OrderMenu() {
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div className="img-text">
+              <h4 className="food-name-text">珍珠奶茶</h4>
               <img src={bubbleTeaImg} alt="bubbleTeaImg" className="foodImg" />
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
@@ -425,6 +441,7 @@ function OrderMenu() {
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div className="img-text">
+              <h4 className="food-name-text">紅茶</h4>
               <img src={blackTeaImg} alt="blackTeaImg" className="foodImg" />
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
@@ -448,6 +465,7 @@ function OrderMenu() {
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div className="img-text">
+              <h4 className="food-name-text">蜂蜜</h4>
               <img src={honeyImg} alt="honeyImg" className="foodImg" />
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
@@ -470,10 +488,10 @@ function OrderMenu() {
               </div>
             </div>
           </div>
-          <br></br>
           <div className="broadImg">
             <h2 className="food-text">甜點:</h2>
             <div className="img-text">
+              <h4 className="food-name-text">甜甜圈</h4>
               <img src={donutsImg} alt="donutsImg" className="foodImg" />
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
@@ -497,6 +515,7 @@ function OrderMenu() {
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div className="img-text">
+              <h4 className="food-name-text">冰淇淋</h4>
               <img src={icecreamImg} alt="icecreamImg" className="foodImg" />
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
@@ -520,6 +539,7 @@ function OrderMenu() {
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div className="img-text">
+              <h4 className="food-name-text">棉花糖</h4>
               <img
                 src={marshmallowImg}
                 alt="marshmallowImg"
@@ -547,6 +567,7 @@ function OrderMenu() {
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div className="img-text">
+              <h4 className="food-name-text">巧克力</h4>
               <img src={chocolateImg} alt="chocolateImg" className="foodImg" />
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
@@ -570,6 +591,7 @@ function OrderMenu() {
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div className="img-text">
+              <h4 className="food-name-text">特別甜點</h4>
               <img src={specialImg} alt="specialImg" className="foodImg" />
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
@@ -592,10 +614,11 @@ function OrderMenu() {
               </div>
             </div>
           </div>
+          <br></br>
+          <button className="submit" onClick={onFinish}>
+            加入購物車
+          </button>
         </div>
-        <button className="submit" onClick={onFinish}>
-          送出
-        </button>
       </div>
     </div>
   );

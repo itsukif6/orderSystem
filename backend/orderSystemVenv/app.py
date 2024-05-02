@@ -68,6 +68,15 @@ def getUsername():
         else:
             return jsonify({"error": "Username not found"}), 404
 
+# get username from DB with login status
+@app.route('/getCart', methods=['GET'])
+def getCart():
+    if request.method == "GET":
+        username = db.getCartEmpty()
+        if username:
+            return jsonify({"username": username})
+        else:
+            return jsonify({"error": "Username not found"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
