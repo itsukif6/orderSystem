@@ -80,8 +80,8 @@ class DB:
             print("Error:", e)
             return e
 
-    # new order insert to DB
-    def insertOrderByNumberAndValue(
+    # new cart insert to DB
+    def insertCartByNumberAndValue(
         self,
         username,
         chicken,
@@ -102,7 +102,7 @@ class DB:
     ):
         try:
             if self.cursor.execute(
-                "INSERT INTO OrderData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                "INSERT INTO CartData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                 (
                     username,
                     chicken,
@@ -134,12 +134,55 @@ class DB:
             self.cursor.execute(
                 "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
             )
-            username = self.cursor.fetchone()  # Fetch the result
+            username = self.cursor.fetchone()  # Fetch the username
             if username is not None:
                 username = username[0]  # Extract the username from the tuple
                 return username
             else:
                 return False
+        except sqlite3.Error as e:
+            print("Error:", e)
+            return e
+
+    # get cart exist with username
+    def getCartEmpty(self):
+        try:
+            # Fetch username as a string
+            self.cursor.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            )
+            username = self.cursor.fetchone()[0]  # Get first username
+
+            # Bind username as a string parameter
+            cart_data = self.cursor.execute(
+                "SELECT * FROM CartData WHERE username = ?;", (str(username),)
+            )
+            first_row = cart_data.fetchone()
+            if first_row:  # Check if a row was found
+                return(first_row)  # Access data using tuple indexing (e.g., first_row[0] for first column)
+            else:
+                print("No cart data found for username:", username)
+
+        except sqlite3.Error as e:
+            print("Error:", e)
+            return e
+
+    # logout with username
+    def logout(self):
+        try:
+            # Fetch username as a string
+            self.cursor.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            )
+            username = self.cursor.fetchone()[0]  # Get first username
+
+            self.cursor.execute(
+                "UPDATE UserData SET loginstatus = 0 WHERE username = ?;",
+                (username,),
+            )
+            self.conn.commit()
+            return True
+
         except sqlite3.Error as e:
             print("Error:", e)
             return e

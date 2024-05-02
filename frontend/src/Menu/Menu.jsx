@@ -152,7 +152,7 @@ function OrderMenu() {
         console.log(json);
         if (json === true) {
           // change port if 3001 or 3000
-          window.location.assign("http://localhost:3000/Order");
+          window.location.assign("http://localhost:3000/ShoppingCart");
         } else {
           alert("123.");
         }
@@ -175,6 +175,14 @@ function OrderMenu() {
       target.previousSibling.value = parseInt(target.previousSibling.value) + 1;
     }
   };
+  
+  // logout
+  const logout = () => {
+    // Simple GET request using fetch
+    fetch('http://localhost:5000/logOut')
+      .then(response => response.json())
+      .then(data => this.setState({ totalReactPackages: data.total }));
+  }
 
   // onClickMenu API
   const onClickMenu = (e) => {
@@ -221,6 +229,8 @@ function OrderMenu() {
       window.location.assign("http://localhost:3000/Track");
     } else if (e.key === "31") {
       // log Out
+      logout();
+      window.location.assign("http://localhost:3000/Login");
     }
   };
   return (

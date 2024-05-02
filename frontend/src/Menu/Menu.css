@@ -1,16 +1,16 @@
 ﻿body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    /* height: 100%; */
     /* 讓 body 填滿整個視口高度 */
 
 }
 
-.food-text{
-    height: 5%;
+.food-text {
+    height: 1rem;
 }
 
-.food-name-text{
+.food-name-text {
     height: 2%;
     margin: 0%;
     display: flex;
@@ -19,43 +19,49 @@
     flex-direction: column;
     flex-direction: row;
 }
+
 .broadImg {
-    
+
     height: 12.5rem;
 }
 
 .submit {
-    size: 10em;
-    text-align:right;
+    size: 10rem;
+    text-align: right;
 }
+
 .foodImg {
     /* 200px for 2k */
     /* 200px = 10em */
     /* 120px for 1k */
-    width: 7rem;
-    height: 7rem;
+    width: 10rem;
+    height: 10rem;
     border-style: ridge;
-    border-width: 0.5em;
+    border-width: 0.5rem;
 }
 
-.img-text{
+.img-text {
     display: inline-block;
 }
 
-.order-num{
+.order-num {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     flex-direction: row;
 }
-/* .broadImg{
-    width: 800px;
-    height: 300px;
-    border-style:ridge;
-    border-width:9px;
-    
-} */
+
+.broadImg {
+    width: 70rem;
+    height: 17rem;
+    text-align: center;
+}
+
+.food-text {
+    text-align: left;
+}
+
 
 #full-menu-component {
     display: flex;
@@ -72,7 +78,7 @@
     background-position: center;
     background-size: cover;
 
-    
+
 }
 
 
@@ -81,14 +87,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%;
+    height: 60rem;
     /* 200px for 2k */
     /* test 75% for all */
-    width: 75%;
+    width: 100rem;
     flex-direction: column;
 
     border-style: ridge;
-    border-width: 0.5em;
+    border-width: 0.5rem;
+    border-radius: 1rem;
 
     background-image: url('./gray.jpg');
     background-repeat: no-repeat;
@@ -99,7 +106,7 @@
 }
 
 .plus-minus-button {
-    width: 1.5em;
+    width: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,9 +118,15 @@
     top: 0;
 }
 
-.submit{
+.submit {
     position: absolute;
-    right: 16rem;
-    bottom: 7rem;
-    size: 30rem;
+    right: 0rem;
+    bottom: 0rem;
+    width: 10rem;
+    height: 10rem;
+    font-size: 1.6rem;
+    text-align: center;
+    border-style: ridge;
+    border-width: 0.5rem;
+    border-radius: 1rem;
 }

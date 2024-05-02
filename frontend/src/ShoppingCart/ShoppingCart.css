@@ -28,4 +28,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
+}
+
+#shopping-cart-data-component{
+    display: ruby;
+}
+
+.shopping-cart-data{
+    margin: 1rem;
 }

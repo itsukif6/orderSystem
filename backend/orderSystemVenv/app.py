@@ -53,7 +53,7 @@ def menu():
         username = data.get("username")
         value = data.get("value")
         print(username, value)
-        if db.insertOrderByNumberAndValue(username, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14]):
+        if db.insertCartByNumberAndValue(username, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14]):
             return("true")    
         else: 
             return("false") 
@@ -72,11 +72,23 @@ def getUsername():
 @app.route('/getCart', methods=['GET'])
 def getCart():
     if request.method == "GET":
-        username = db.getCartEmpty()
-        if username:
-            return jsonify({"username": username})
+        data = db.getCartEmpty()
+        if data:
+            print(data)
+            return jsonify({"data": data})  
         else:
-            return jsonify({"error": "Username not found"}), 404
+            return jsonify({"error": "Cart empty"}), 404
+        
+# get username from DB with login status
+@app.route('/logOut', methods=['GET'])
+def logOut():
+    if request.method == "GET":
+        islogout = db.logout()
+        print(islogout)
+        if islogout:
+            return ("true")
+        else:
+            return ("false")
 
 if __name__ == '__main__':
     app.run(debug=True)

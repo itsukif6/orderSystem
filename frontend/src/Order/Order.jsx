@@ -84,6 +84,15 @@ const items = [
   },
 ];
 const Order = () => {
+  
+  // logout
+  const logout = () => {
+    // Simple GET request using fetch
+    fetch('http://localhost:5000/logOut')
+      .then(response => response.json())
+      .then(data => this.setState({ totalReactPackages: data.total }));
+  }
+
   const onClickMenu = (e) => {
     // click items component links
     console.log('click ', e);
@@ -116,6 +125,8 @@ const Order = () => {
       window.location.assign("http://localhost:3000/Track");
     } else if (e.key === "31") {
       // log Out
+      logout();
+      window.location.assign("http://localhost:3000/Login");
     }
 
   };
