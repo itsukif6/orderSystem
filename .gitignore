@@ -2,5 +2,5 @@
 /backend/orderSystemVenv/Lib
 /backend/orderSystemVenv/Scripts
 /backend/orderSystemVenv/Include
-/backend/orderSystemVenv/Lib
 /backend/orderSystemVenv/Lib/site-packages
+/frontend/node_modules
