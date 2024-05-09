@@ -49,14 +49,30 @@ def register():
 @app.route('/menu', methods=['GET', 'POST'])
 def menu():
     if request.method == "POST":   
+        import datetime
+        now = datetime.datetime.now()
+        print(now)
+
         data = request.json
         username = data.get("username")
         value = data.get("value")
-        print(username, value)
-        if db.insertCartByNumberAndValue(username, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14]):
-            return("true")    
-        else: 
+        
+        nullOrder = True
+        for i in value:
+            if i != '0':
+                nullOrder = False
+
+        if nullOrder == True:
+            print("order is null")
+            print(username, value)
             return("false") 
+        
+        elif nullOrder == False:
+            print(username, value)
+            if db.insertCartByNumberAndValue(username, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], now):
+                return("true")    
+            else: 
+                return("false") 
 
 # get username from DB with login status
 @app.route('/getUsername', methods=['GET'])

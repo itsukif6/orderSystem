@@ -154,7 +154,7 @@ function OrderMenu() {
           // change port if 3001 or 3000
           window.location.assign("http://localhost:3000/ShoppingCart");
         } else {
-          alert("123.");
+          alert("Order can't be null!!");
         }
       });
   };
@@ -175,14 +175,14 @@ function OrderMenu() {
       target.previousSibling.value = parseInt(target.previousSibling.value) + 1;
     }
   };
-  
+
   // logout
   const logout = () => {
     // Simple GET request using fetch
-    fetch('http://localhost:5000/logOut')
-      .then(response => response.json())
-      .then(data => this.setState({ totalReactPackages: data.total }));
-  }
+    fetch("http://localhost:5000/logOut")
+      .then((response) => response.json())
+      .then((data) => this.setState({ totalReactPackages: data.total }));
+  };
 
   // onClickMenu API
   const onClickMenu = (e) => {

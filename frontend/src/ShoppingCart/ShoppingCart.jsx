@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./ShoppingCart.css";
 import { Empty } from "antd";
-import { Divider, List, Typography } from 'antd';
-const data = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
-];
+import { Divider, List, Typography } from "antd";
 
+// header
 let headers = {
   "Content-Type": "application/json",
   Accept: "application/json",
@@ -40,8 +34,14 @@ function ShoppingCart() {
     } else {
       return false; // Cart is not empty if it's any other value
     }
-  }
+  };
 
+  // food data
+  let foodData = ["烤雞", "披薩", "牛排", "辣炒年糕", "龍蝦"];
+  // drink data
+  let drinkData = ["可口可樂", "綠茶", "珍珠奶茶", "紅茶", "蜂蜜"];
+  // dessert data
+  let dessertData = ["甜甜圈", "冰淇淋", "棉花糖", "巧克力", "特別甜點"];
 
   return (
     <div id="shopping-cart-full-component">
@@ -57,11 +57,11 @@ function ShoppingCart() {
               <>
                 <Divider orientation="left">購物車內容</Divider>
                 <List
-                  size="small"
-                  header={<div>食物</div>}
+                  size="middle"
+                  header={<div>食物 : </div>}
                   footer={<div></div>}
                   bordered
-                  dataSource={data}
+                  dataSource={foodData}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
                 />
               </>
@@ -70,11 +70,11 @@ function ShoppingCart() {
               <>
                 <Divider orientation="left"></Divider>
                 <List
-                  size="small"
-                  header={<div>飲料</div>}
+                  size="middle"
+                  header={<div>飲料 :</div>}
                   footer={<div></div>}
                   bordered
-                  dataSource={data}
+                  dataSource={drinkData}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
                 />
               </>
@@ -83,17 +83,16 @@ function ShoppingCart() {
               <>
                 <Divider orientation="left"></Divider>
                 <List
-                  size="small"
-                  header={<div>甜點</div>}
+                  size="middle"
+                  header={<div>甜點 :</div>}
                   footer={<div></div>}
                   bordered
-                  dataSource={data}
+                  dataSource={dessertData}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
                 />
               </>
             </div>
           </div>
-
         )}
       </div>
     </div>

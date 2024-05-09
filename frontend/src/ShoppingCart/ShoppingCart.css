@@ -33,8 +33,21 @@
 
 #shopping-cart-data-component{
     display: ruby;
+    
+}
+
+.ant-divider-inner-text{
+    font-size: 2rem;
+}
+
+.ant-list-header{
+    font-size: 2rem;
+}
+
+.ant-list-item{
+    font-size: 2rem;
 }
 
 .shopping-cart-data{
-    margin: 1rem;
+    margin: 2rem;
 }

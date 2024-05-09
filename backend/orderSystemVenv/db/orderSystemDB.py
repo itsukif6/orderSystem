@@ -99,10 +99,11 @@ class DB:
         marshmallow,
         chocolate,
         special,
+        time,
     ):
         try:
             if self.cursor.execute(
-                "INSERT INTO CartData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                "INSERT INTO CartData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                 (
                     username,
                     chicken,
@@ -120,6 +121,7 @@ class DB:
                     marshmallow,
                     chocolate,
                     special,
+                    time,
                 ),
             ):
                 self.conn.commit()
