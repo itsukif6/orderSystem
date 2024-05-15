@@ -1,4 +1,4 @@
-#shopping-cart-full-component{
+#shopping-cart-full-component {
     height: 100vh;
     background-image: url('./Cart.png');
     background-repeat: no-repeat;
@@ -11,8 +11,8 @@
     align-items: center;
 }
 
-#shopping-cart-component{
-    height: 40rem;
+#shopping-cart-component {
+    height: 50rem;
     width: 80rem;
     background-image: url('./gray.jpg');
     background-repeat: no-repeat;
@@ -26,16 +26,31 @@
     border-width: 0.3rem;
 
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+
     
+
+
 }
 
-#shopping-cart-data-component{
-    display: ruby;
-    
+#shopping-cart-data-component {
+    height: 50rem;
+    margin-left: 10rem;
+    overflow: auto;
 }
 
+#shopping-cart-title-component {
+    display: flex;
+    margin-left: 10rem;
+}
+
+#shopping-cart-title {
+    margin-top: 5rem;
+}
+
+/* 第一版 */
+/* 
 .ant-divider-inner-text{
     font-size: 2rem;
 }
@@ -45,9 +60,58 @@
 }
 
 .ant-list-item{
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 .shopping-cart-data{
     margin: 2rem;
+}
+
+.ant-list.ant-list-split.ant-list-bordered.ant-list-something-after-last-item.css-dev-only-do-not-override-1kuana8{
+    border-width: 0.15rem;
+    border-color: rgba(180, 180, 180, 0.88);
+} */
+
+/* 第二版 */
+.food-component {
+    border: 0.1rem solid;
+    border-color: rgba(127, 127, 127, 0.88);
+    border-radius: 0.3rem;
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5rem;
+    margin-bottom: 1rem;
+
+}
+
+.food-name-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3rem;
+    margin-right: 3.5rem;
+}
+
+.food-name-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3rem;
+    margin-right: 2.1rem;
+}
+
+.food-name-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3rem;
+    margin-right: 0.7rem;
+}
+
+.img {
+    width: 10rem;
+    height: 10rem;
+    
 }
