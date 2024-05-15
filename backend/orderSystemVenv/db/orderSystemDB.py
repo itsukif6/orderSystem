@@ -102,30 +102,83 @@ class DB:
         time,
     ):
         try:
-            if self.cursor.execute(
-                "INSERT INTO CartData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
-                (
-                    username,
-                    chicken,
-                    pizza,
-                    steak,
-                    friedRiceCake,
-                    lobster,
-                    coke,
-                    greenTea,
-                    bubbleTea,
-                    blackTea,
-                    honey,
-                    donuts,
-                    icecream,
-                    marshmallow,
-                    chocolate,
-                    special,
-                    time,
-                ),
-            ):
-                self.conn.commit()
-                return True
+            if self.cursor.execute("SELECT username FROM UserData WHERE loginstatus = ?;", (1,)):
+                username = self.cursor.fetchone()[0]
+                cart_data = self.cursor.execute(
+                "SELECT * FROM CartData WHERE username = ?;", (str(username),)
+                )
+                first_row = cart_data.fetchone()
+                if first_row:  # Check if a row was found
+                    print(first_row)
+                    chicken = int(chicken) + int(first_row[1])
+                    pizza = int(pizza) + int(first_row[2])
+                    steak = int(steak)  + int(first_row[3])
+                    friedRiceCake = int(friedRiceCake) + int(first_row[4])
+                    lobster = int(lobster) + int(first_row[5])
+                    coke = int(coke) + int(first_row[6])
+                    greenTea = int(greenTea) + int(first_row[7])
+                    bubbleTea = int(bubbleTea) + int(first_row[8])
+                    blackTea = int(blackTea) + int(first_row[9])
+                    honey = int(honey) + int(first_row[10])
+                    donuts = int(donuts) + int(first_row[11])
+                    icecream = int(icecream) + int(first_row[12])
+                    marshmallow = int(marshmallow) + int(first_row[13])
+                    chocolate = int(chocolate) + int(first_row[14])
+                    special = int(special) + int(first_row[15])
+                    # if found, use update
+                    if self.cursor.execute(
+                        "UPDATE CartData SET username = ?, chicken = ?, pizza = ?, steak = ?, friedRiceCake = ?, lobster = ?, coke = ?, greenTea = ?, bubbleTea = ?, blackTea = ?, honey = ?, donuts = ?, icecream = ?, marshmallow = ?, chocolate = ?, special = ?, time = ? WHERE username = ?",
+                        (
+                            username,
+                            chicken,
+                            pizza,
+                            steak,
+                            friedRiceCake,
+                            lobster,
+                            coke,
+                            greenTea,
+                            bubbleTea,
+                            blackTea,
+                            honey,
+                            donuts,
+                            icecream,
+                            marshmallow,
+                            chocolate,
+                            special,
+                            time,
+                            str(username),
+                        ),
+                    ):
+                        self.conn.commit()
+                        return True
+                else:
+                    # else use insert
+                    print("No cart data found for username:", username)
+                    if self.cursor.execute(
+                        "INSERT INTO CartData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                        (
+                            username,
+                            chicken,
+                            pizza,
+                            steak,
+                            friedRiceCake,
+                            lobster,
+                            coke,
+                            greenTea,
+                            bubbleTea,
+                            blackTea,
+                            honey,
+                            donuts,
+                            icecream,
+                            marshmallow,
+                            chocolate,
+                            special,
+                            time,
+                        ),
+                    ):
+                        print("insert successfully")
+                        self.conn.commit()
+                        return True
         except sqlite3.Error as e:
             print("Error:", e)
             return e

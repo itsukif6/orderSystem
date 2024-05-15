@@ -51,7 +51,6 @@ def menu():
     if request.method == "POST":   
         import datetime
         now = datetime.datetime.now()
-        print(now)
 
         data = request.json
         username = data.get("username")
