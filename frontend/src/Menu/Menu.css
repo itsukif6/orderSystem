@@ -3,11 +3,12 @@
     padding: 0;
     /* height: 100%; */
     /* 讓 body 填滿整個視口高度 */
-
+    font-family: SimHei, SimSun;
 }
 
 .food-text {
     height: 1rem;
+    font-size: 1.9rem;
 }
 
 .food-name-text {
@@ -18,10 +19,10 @@
     align-items: center;
     flex-direction: column;
     flex-direction: row;
+    font-size: 1.5rem;
 }
 
 .broadImg {
-
     height: 12.5rem;
 }
 
@@ -42,6 +43,7 @@
 
 .img-text {
     display: inline-block;
+
 }
 
 .order-num {
@@ -87,7 +89,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60rem;
+    height: 56rem;
     /* 200px for 2k */
     /* test 75% for all */
     width: 85rem;
@@ -106,12 +108,18 @@
 }
 
 .plus-minus-button {
-    width: 1.5rem;
+    width: 1.45rem;
+    height: 1.45rem;
+    border-radius: 0.18rem;
     display: flex;
     justify-content: center;
     align-items: center;
     /* background-color: #e4fbff;
     border: #000000; */
+}
+input {
+    width: 3rem;
+    height: 1.2rem;
 }
 
 #menu {
@@ -130,3 +138,4 @@
     border-width: 0.5rem;
     border-radius: 1rem;
 }
+

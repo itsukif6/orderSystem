@@ -80,11 +80,11 @@ const items = [
       },
       {
         key: "24",
-        label: "Order Info",
+        label: "Shopping Cart",
       },
       {
         key: "25",
-        label: "Shopping Cart",
+        label: "Order Info",
       },
       {
         key: "26",
@@ -220,10 +220,10 @@ function OrderMenu() {
       window.location.assign("http://localhost:3000/Menu");
     } else if (e.key === "24") {
       // order API
-      window.location.assign("http://localhost:3000/Order");
+      window.location.assign("http://localhost:3000/ShoppingCart");
     } else if (e.key === "25") {
       // shopping cart API
-      window.location.assign("http://localhost:3000/ShoppingCart");
+      window.location.assign("http://localhost:3000/Order");
     } else if (e.key === "26") {
       // order track API
       window.location.assign("http://localhost:3000/Track");
@@ -275,7 +275,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">披薩</h4>
               <img src={pizzaImg} alt="pizzaImg" className="foodImg" />
@@ -299,7 +299,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">牛排</h4>
               <img src={steakImg} alt="steakImg" className="foodImg" />
@@ -323,7 +323,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">辣炒年糕</h4>
               <img
@@ -351,7 +351,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">龍蝦</h4>
               <img src={lobsterImg} alt="lobsterImg" className="foodImg" />
@@ -401,7 +401,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">綠茶</h4>
               <img src={greenTeaImg} alt="greenTeaImg" className="foodImg" />
@@ -425,7 +425,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">珍珠奶茶</h4>
               <img src={bubbleTeaImg} alt="bubbleTeaImg" className="foodImg" />
@@ -449,7 +449,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">紅茶</h4>
               <img src={blackTeaImg} alt="blackTeaImg" className="foodImg" />
@@ -473,7 +473,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">蜂蜜</h4>
               <img src={honeyImg} alt="honeyImg" className="foodImg" />
@@ -523,7 +523,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">冰淇淋</h4>
               <img src={icecreamImg} alt="icecreamImg" className="foodImg" />
@@ -547,7 +547,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">棉花糖</h4>
               <img
@@ -575,7 +575,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">巧克力</h4>
               <img src={chocolateImg} alt="chocolateImg" className="foodImg" />
@@ -599,7 +599,7 @@ function OrderMenu() {
                 </button>
               </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">特別甜點</h4>
               <img src={specialImg} alt="specialImg" className="foodImg" />

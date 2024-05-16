@@ -24,4 +24,12 @@
 
 #hello-text {
     color: #ffffff;
+    font-size: 3.7rem;
+}
+
+button {
+    width: 4rem;
+    height: 2.5rem;
+    border-radius: 0.3rem;
+    font-size: 1.1rem;
 }
