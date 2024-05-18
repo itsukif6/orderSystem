@@ -115,6 +115,8 @@ function OrderMenu() {
 
   useEffect(() => {
     fetchUsername();
+    // title
+    document.title = 'Menu';
   }, []);
 
   const fetchUsername = () => {
@@ -232,6 +234,8 @@ function OrderMenu() {
       logout();
       window.location.assign("http://localhost:3000/Login");
     }
+
+    
   };
   return (
     <div id="full-menu-component">

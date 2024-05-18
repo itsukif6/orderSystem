@@ -1,4 +1,4 @@
-﻿import React from "react";
+﻿import React, { useEffect }from "react";
 import "./Welcome.css";
 
 function Welcome() {
@@ -6,6 +6,11 @@ function Welcome() {
     // change port if 3001 or 3000
     window.location.assign("http://localhost:3000/Login");
   };
+
+  // title
+  useEffect(() => {
+    document.title = 'Welcome To Order System';
+  }, []);
 
   return (
     <div id="welcome-component">

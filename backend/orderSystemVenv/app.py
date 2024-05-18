@@ -99,11 +99,20 @@ def getCart():
 def logOut():
     if request.method == "GET":
         islogout = db.logout()
-        print(islogout)
         if islogout:
             return ("true")
         else:
             return ("false")
 
+# send Order: delete cart data and insert into order table
+@app.route('/sendOrder', methods=['GET'])
+def sendOrder():
+    if request.method == "GET":
+        isOrderSended = db.sendOrder()
+        if isOrderSended:
+            return ("true")
+        else:
+            return ("false")
+    
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,4 +1,4 @@
-﻿import React, { createContext, useState } from "react";
+﻿import React, { createContext, useState, useEffect } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
 import "./Login.css";
@@ -41,9 +41,15 @@ const App = () => {
       });
     setValue(values["username"]);
   };
+
   const handleRegisterClick = () => {
     window.location.assign("http://localhost:3000/Register");
   };
+
+  // title
+  useEffect(() => {
+    document.title = 'Login Page';
+  }, []);
 
   return (
     <User.Provider value={usernamevalue}>

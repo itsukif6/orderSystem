@@ -1,6 +1,6 @@
 ﻿import sqlite3
 
-test_dbfile = "orderSystemVenv\db\orderSystemDB.db"
+# test_dbfile = "backend\orderSystemVenv\db\orderSystemDB.db"
 dbfile = "db\orderSystemDB.db"
 
 
@@ -102,17 +102,19 @@ class DB:
         time,
     ):
         try:
-            if self.cursor.execute("SELECT username FROM UserData WHERE loginstatus = ?;", (1,)):
+            if self.cursor.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            ):
                 username = self.cursor.fetchone()[0]
                 cart_data = self.cursor.execute(
-                "SELECT * FROM CartData WHERE username = ?;", (str(username),)
+                    "SELECT * FROM CartData WHERE username = ?;", (str(username),)
                 )
                 first_row = cart_data.fetchone()
                 if first_row:  # Check if a row was found
                     print(first_row)
                     chicken = int(chicken) + int(first_row[1])
                     pizza = int(pizza) + int(first_row[2])
-                    steak = int(steak)  + int(first_row[3])
+                    steak = int(steak) + int(first_row[3])
                     friedRiceCake = int(friedRiceCake) + int(first_row[4])
                     lobster = int(lobster) + int(first_row[5])
                     coke = int(coke) + int(first_row[6])
@@ -214,7 +216,7 @@ class DB:
             )
             first_row = cart_data.fetchone()
             if first_row:  # Check if a row was found
-                return(first_row)  # Access data using tuple indexing (e.g., first_row[0] for first column)
+                return first_row  # Access data using tuple indexing (e.g., first_row[0] for first column)
             else:
                 print("No cart data found for username:", username)
 
@@ -241,3 +243,55 @@ class DB:
         except sqlite3.Error as e:
             print("Error:", e)
             return e
+
+    # send order: delete shopping cart data and insert order data to order table
+    def sendOrder(self):
+        try:
+            # Fetch username as a string
+            self.cursor.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            )
+            username = self.cursor.fetchone()[0]  # Get first username
+
+            # Get shopping cart data
+            cart_data = self.cursor.execute(
+                "SELECT * FROM CartData WHERE username = ?;", (str(username),)
+            )
+            first_row = cart_data.fetchone()
+
+            # Insert Order Data and delete shopping cart data
+            if self.cursor.execute(
+                "INSERT INTO OrderData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                (
+                    first_row[0],
+                    first_row[1],
+                    first_row[2],
+                    first_row[3],
+                    first_row[4],
+                    first_row[5],
+                    first_row[6],
+                    first_row[7],
+                    first_row[8],
+                    first_row[9],
+                    first_row[10],
+                    first_row[11],
+                    first_row[12],
+                    first_row[13],
+                    first_row[14],
+                    first_row[15],
+                    first_row[16],
+                ),
+            ) and self.cursor.execute("DELETE FROM CartData WHERE username = ?;", (str(username),)):
+                print("insert into orderData and delete CartData successfully!")
+                self.conn.commit()
+                return True
+            
+        except sqlite3.Error as e:
+            print("Error:", e)
+            return e
+
+
+# test DB methods
+if __name__ == "__main__":
+    db = DB()
+    print(db.sendOrder())
