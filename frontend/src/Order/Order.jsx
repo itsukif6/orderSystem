@@ -56,11 +56,11 @@ const items = [
       },
       {
         key: '24',
-        label: 'Order Info',
+        label: 'Shopping Cart',
       },
       {
         key: '25',
-        label: 'Shopping Cart',
+        label: 'Order Info',
       },
       {
         key: '26',
@@ -116,10 +116,10 @@ const Order = () => {
       window.location.assign("http://localhost:3000/Menu");
     } else if (e.key === "24") {
       // order API
-      window.location.assign("http://localhost:3000/Order");
+      window.location.assign("http://localhost:3000/ShoppingCart");
     } else if (e.key === "25") {
       // shopping cart API
-      window.location.assign("http://localhost:3000/ShoppingCart");
+      window.location.assign("http://localhost:3000/Order");
     } else if (e.key === "26") {
       // order track API
       window.location.assign("http://localhost:3000/Track");

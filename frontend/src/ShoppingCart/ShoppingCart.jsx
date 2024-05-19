@@ -17,6 +17,8 @@ import honeyImg from "./honey.png";
 import marshmallowImg from "./marshmallow.jpg";
 import chocolateImg from "./chocolate.jpg";
 import specialImg from "./special.png";
+import backImg from "./back.jpg";
+
 import {
   AppstoreOutlined,
   MailOutlined,
@@ -145,6 +147,7 @@ function ShoppingCart() {
       return 0;
     }
   };
+
   // // food data
   // let foodData = ["烤雞\t:\t", "披薩\t:\t", "牛排\t:\t", "年糕\t:\t", "龍蝦\t:\t"];
   // // foodData[0].join(" ");
@@ -166,6 +169,7 @@ function ShoppingCart() {
   //     dessertData[i] = dessertData[i] + cartEmpty[i + 11]+ " 份";
   //   }
   // }
+
   // logout
   const logout = () => {
     // logout GET request using fetch
@@ -174,6 +178,7 @@ function ShoppingCart() {
       .then((data) => this.setState({ totalReactPackages: data.total }));
   };
 
+  // send order request
   const sendOrder = () => {
     fetch("http://localhost:5000/sendOrder")
       .then((response) => response.json())
@@ -189,6 +194,28 @@ function ShoppingCart() {
       });
 
     window.location.assign("http://localhost:3000/Order");
+  };
+
+  //get total price
+  const getPrice = () => {
+    var i, totalPrice = 0;
+    if (cartEmpty) {
+      for (i = 1; i < 16; i++) {
+        // food
+        if (i <= 5) {
+          totalPrice += (cartEmpty[i] * 199)
+        }
+        // drink
+        else if (i <= 10) {
+          totalPrice += (cartEmpty[i] * 30)
+        }
+        // dessert
+        else if (i <= 15) {
+          totalPrice += (cartEmpty[i] * 49)
+        }
+      }
+    }
+    return totalPrice;
   };
 
   // onClickMenu API
@@ -310,7 +337,7 @@ function ShoppingCart() {
               <div className="shopping-cart-data">
                 {/* 若食物不為空才顯示 */}
                 {foodEmpty(1) !== 0 || foodEmpty(2) !== 0 || foodEmpty(3) !== 0 || foodEmpty(4) !== 0 || foodEmpty(5) !== 0 ? (
-                  <><h1 className="shopping-cart-food-title">食物 : </h1><div>
+                  <><h1 className="shopping-cart-food-title">主食 : </h1><div>
                     {foodEmpty(1) ? (
                       <div className="food-component">
                         <img
@@ -547,13 +574,21 @@ function ShoppingCart() {
                   <p></p>
                 )}
               </div>
-            </div><button className="send-order-button" onClick={sendOrder}>
+            </div>
+            <button className="send-order-button" onClick={sendOrder}>
               送出訂單
             </button>
           </div>
         )}
+        <div id="price-text">
+          <h2>總金額: {getPrice()}元</h2>
+        </div>
+        <div>
+          <button id="back-to-menu">
+          </button>
+          {/* <h id="back-to-menu-text">返回菜單頁面</h> */}
+        </div>
       </div>
-
     </div>
   );
 }

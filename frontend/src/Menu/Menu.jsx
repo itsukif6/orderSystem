@@ -27,6 +27,7 @@ let headers = {
   "Content-Type": "application/json",
   Accept: "application/json",
 };
+
 const items = [
   {
     key: "sub01",
@@ -107,6 +108,17 @@ const items = [
     ],
   },
 ];
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   const showInfoButton = document.getElementById('showInfoButton');
+//   const foodImgContainer = document.getElementById('foodImgContainer');
+//   console.log("showInfoButton", showInfoButton, foodImgContainer);
+//   showInfoButton?.addEventListener('click', function () {
+
+//     foodImgContainer?.classList.toggle('.show-info');
+//   });
+// });
+
 function OrderMenu() {
   const ref = useRef({});
 
@@ -160,6 +172,7 @@ function OrderMenu() {
         }
       });
   };
+
   //button minus
   const onMinus = (e) => {
     const { target } = e;
@@ -185,6 +198,17 @@ function OrderMenu() {
       .then((response) => response.json())
       .then((data) => this.setState({ totalReactPackages: data.total }));
   };
+
+  const showInfo = () => {
+    const foodImgContainers = document.querySelectorAll('.foodImg-container');
+
+    // 遍历所有的 .foodImg-container 元素
+    foodImgContainers.forEach(container => {
+      // 切换 .show-info 类的存在
+      container.classList.toggle('show-info');
+    });
+  };
+
 
   // onClickMenu API
   const onClickMenu = (e) => {
@@ -234,9 +258,8 @@ function OrderMenu() {
       logout();
       window.location.assign("http://localhost:3000/Login");
     }
-
-    
   };
+
   return (
     <div id="full-menu-component">
       {/* menu div */}
@@ -254,11 +277,23 @@ function OrderMenu() {
       </div>
       <div id="menu-component">
         <div>
+          <button id="showInfoButton" onClick={showInfo}>顯示食物資訊</button>
           <div className="broadImg">
             <h2 className="food-text">主食:</h2>
             <div className="img-text">
               <h4 className="food-name-text">烤雞</h4>
-              <img src={chickenImg} alt="chickenImg" className="foodImg" />
+              <div className="foodImg-container" id="foodImgContainer">
+                <img src={chickenImg} alt="chickenImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>199元/份</span></p>
+                  <p><span>熱量:</span><span>203卡/份</span></p>
+                  <p><span>蛋白質:</span><span>22g/份</span></p>
+                  <p><span>脂肪:</span><span>11g/份</span></p>
+                  <p><span>碳水:</span><span>0g/份</span></p>
+                  <p><span>糖:</span><span>0g/份</span></p>
+                  <p><span>鈉:</span><span>100mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -282,7 +317,18 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">披薩</h4>
-              <img src={pizzaImg} alt="pizzaImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={pizzaImg} alt="pizzaImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>199元/份</span></p>
+                  <p><span>熱量:</span><span>240卡/份</span></p>
+                  <p><span>蛋白質:</span><span>13g/份</span></p>
+                  <p><span>脂肪:</span><span>17g/份</span></p>
+                  <p><span>碳水:</span><span>29g/份</span></p>
+                  <p><span>糖:</span><span>5g/份</span></p>
+                  <p><span>鈉:</span><span>710mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -306,7 +352,18 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">牛排</h4>
-              <img src={steakImg} alt="steakImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={steakImg} alt="steakImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>199元/份</span></p>
+                  <p><span>熱量:</span><span>162卡/份</span></p>
+                  <p><span>蛋白質:</span><span>20g/份</span></p>
+                  <p><span>脂肪:</span><span>4g/份</span></p>
+                  <p><span>碳水:</span><span>2g/份</span></p>
+                  <p><span>糖:</span><span>0g/份</span></p>
+                  <p><span>鈉:</span><span>46mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -330,11 +387,21 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">辣炒年糕</h4>
-              <img
-                src={friedRiceCakeImg}
-                alt="friedRiceCakeImg"
-                className="foodImg"
-              />
+              <div className="foodImg-container">
+                <img
+                  src={friedRiceCakeImg}
+                  alt="friedRiceCakeImg"
+                  className="foodImg"
+                /><div className="foodImg-text">
+                  <p><span>價格:</span><span>199元/份</span></p>
+                  <p><span>熱量:</span><span>319卡/份</span></p>
+                  <p><span>蛋白質:</span><span>15g/份</span></p>
+                  <p><span>脂肪:</span><span>8g/份</span></p>
+                  <p><span>碳水:</span><span>51g/份</span></p>
+                  <p><span>糖:</span><span>10g/份</span></p>
+                  <p><span>鈉:</span><span>1386mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -358,7 +425,18 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">龍蝦</h4>
-              <img src={lobsterImg} alt="lobsterImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={lobsterImg} alt="lobsterImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>199元/份</span></p>
+                  <p><span>熱量:</span><span>93卡/份</span></p>
+                  <p><span>蛋白質:</span><span>22g/份</span></p>
+                  <p><span>脂肪:</span><span>1g/份</span></p>
+                  <p><span>碳水:</span><span>0g/份</span></p>
+                  <p><span>糖:</span><span>0g/份</span></p>
+                  <p><span>鈉:</span><span>198mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -384,7 +462,18 @@ function OrderMenu() {
             <h2 className="food-text">飲料:</h2>
             <div className="img-text">
               <h4 className="food-name-text">可口可樂</h4>
-              <img src={cokeImg} alt="cokeImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={cokeImg} alt="cokeImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>30元/份</span></p>
+                  <p><span>熱量:</span><span>139卡/份</span></p>
+                  <p><span>蛋白質:</span><span>0g/份</span></p>
+                  <p><span>脂肪:</span><span>0g/份</span></p>
+                  <p><span>碳水:</span><span>35g/份</span></p>
+                  <p><span>糖:</span><span>35g/份</span></p>
+                  <p><span>鈉:</span><span>20mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -408,7 +497,18 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">綠茶</h4>
-              <img src={greenTeaImg} alt="greenTeaImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={greenTeaImg} alt="greenTeaImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>30元/份</span></p>
+                  <p><span>熱量:</span><span>0卡/份</span></p>
+                  <p><span>蛋白質:</span><span>0g/份</span></p>
+                  <p><span>脂肪:</span><span>0g/份</span></p>
+                  <p><span>碳水:</span><span>0g/份</span></p>
+                  <p><span>糖:</span><span>0g/份</span></p>
+                  <p><span>鈉:</span><span>36mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -432,7 +532,18 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">珍珠奶茶</h4>
-              <img src={bubbleTeaImg} alt="bubbleTeaImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={bubbleTeaImg} alt="bubbleTeaImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>30元/份</span></p>
+                  <p><span>熱量:</span><span>90卡/份</span></p>
+                  <p><span>蛋白質:</span><span>0g/份</span></p>
+                  <p><span>脂肪:</span><span>0g/份</span></p>
+                  <p><span>碳水:</span><span>23g/份</span></p>
+                  <p><span>糖:</span><span>10g/份</span></p>
+                  <p><span>鈉:</span><span>0mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -456,7 +567,18 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">紅茶</h4>
-              <img src={blackTeaImg} alt="blackTeaImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={blackTeaImg} alt="blackTeaImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>30元/份</span></p>
+                  <p><span>熱量:</span><span>73卡/份</span></p>
+                  <p><span>蛋白質:</span><span>5g/份</span></p>
+                  <p><span>脂肪:</span><span>5g/份</span></p>
+                  <p><span>碳水:</span><span>18g/份</span></p>
+                  <p><span>糖:</span><span>18g/份</span></p>
+                  <p><span>鈉:</span><span>25mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -480,7 +602,18 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">蜂蜜</h4>
-              <img src={honeyImg} alt="honeyImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={honeyImg} alt="honeyImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>30元/份</span></p>
+                  <p><span>熱量:</span><span>32卡/份</span></p>
+                  <p><span>蛋白質:</span><span>0g/份</span></p>
+                  <p><span>脂肪:</span><span>0g/份</span></p>
+                  <p><span>碳水:</span><span>7g/份</span></p>
+                  <p><span>糖:</span><span>7g/份</span></p>
+                  <p><span>鈉:</span><span>0mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -506,7 +639,18 @@ function OrderMenu() {
             <h2 className="food-text">甜點:</h2>
             <div className="img-text">
               <h4 className="food-name-text">甜甜圈</h4>
-              <img src={donutsImg} alt="donutsImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={donutsImg} alt="donutsImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>49元/份</span></p>
+                  <p><span>熱量:</span><span>360卡/份</span></p>
+                  <p><span>蛋白質:</span><span>4g/份</span></p>
+                  <p><span>脂肪:</span><span>1g/份</span></p>
+                  <p><span>碳水:</span><span>84g/份</span></p>
+                  <p><span>糖:</span><span>16g/份</span></p>
+                  <p><span>鈉:</span><span>176mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -530,7 +674,18 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">冰淇淋</h4>
-              <img src={icecreamImg} alt="icecreamImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={icecreamImg} alt="icecreamImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>49元/份</span></p>
+                  <p><span>熱量:</span><span>118卡/份</span></p>
+                  <p><span>蛋白質:</span><span>4g/份</span></p>
+                  <p><span>脂肪:</span><span>1g/份</span></p>
+                  <p><span>碳水:</span><span>23g/份</span></p>
+                  <p><span>糖:</span><span>6g/份</span></p>
+                  <p><span>鈉:</span><span>99mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -554,11 +709,22 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">棉花糖</h4>
-              <img
-                src={marshmallowImg}
-                alt="marshmallowImg"
-                className="foodImg"
-              />
+              <div className="foodImg-container">
+                <img
+                  src={marshmallowImg}
+                  alt="marshmallowImg"
+                  className="foodImg"
+                />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>49元/份</span></p>
+                  <p><span>熱量:</span><span>334卡/份</span></p>
+                  <p><span>蛋白質:</span><span>3g/份</span></p>
+                  <p><span>脂肪:</span><span>1g/份</span></p>
+                  <p><span>碳水:</span><span>78g/份</span></p>
+                  <p><span>糖:</span><span>55g/份</span></p>
+                  <p><span>鈉:</span><span>73mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -582,7 +748,18 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">巧克力</h4>
-              <img src={chocolateImg} alt="chocolateImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={chocolateImg} alt="chocolateImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>49元/份</span></p>
+                  <p><span>熱量:</span><span>613卡/份</span></p>
+                  <p><span>蛋白質:</span><span>11g/份</span></p>
+                  <p><span>脂肪:</span><span>46g/份</span></p>
+                  <p><span>碳水:</span><span>39g/份</span></p>
+                  <p><span>糖:</span><span>11g/份</span></p>
+                  <p><span>鈉:</span><span>73mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -
@@ -606,7 +783,18 @@ function OrderMenu() {
             &nbsp;&nbsp;
             <div className="img-text">
               <h4 className="food-name-text">特別甜點</h4>
-              <img src={specialImg} alt="specialImg" className="foodImg" />
+              <div className="foodImg-container">
+                <img src={specialImg} alt="specialImg" className="foodImg" />
+                <div className="foodImg-text">
+                  <p><span>價格:</span><span>49元/份</span></p>
+                  <p><span>熱量:</span><span>250卡/份</span></p>
+                  <p><span>蛋白質:</span><span>15g/份</span></p>
+                  <p><span>脂肪:</span><span>30g/份</span></p>
+                  <p><span>碳水:</span><span>30g/份</span></p>
+                  <p><span>糖:</span><span>50g/份</span></p>
+                  <p><span>鈉:</span><span>75mg/份</span></p>
+                </div>
+              </div>
               <div className="order-num">
                 <button className="plus-minus-button" onClick={onMinus}>
                   -

@@ -47,6 +47,7 @@
     display: flex;
     margin-bottom: 5rem;
     flex-direction: column;
+    margin-left: 8rem;
 }
 
 #shopping-cart-title {
@@ -141,3 +142,32 @@
     border-radius: 1rem;
     border-color: rgba(150, 150, 150, 0.88);
 }
+
+/* price */
+#price-text{
+    position: relative;
+    left: 5rem;
+    top: 15rem;
+    font-size: 1.2rem;
+    border-bottom: 0.15rem solid;
+    border-color: rgba(19, 19, 19, 0.88);
+    height: 3.7rem;
+    margin-right: 0rem;
+}
+
+/* back to menu */
+#back-to-menu{
+    height: 4rem;
+    width: 4rem;
+    background-image: url("./back.jpg");
+    background-size: Cover; 
+    position: relative;
+    left: 3.8rem;
+    top: 22rem;
+}
+
+/* #back-to-menu-text{
+    position: relative;
+    left: 5rem;
+    top: 23rem;
+} */
