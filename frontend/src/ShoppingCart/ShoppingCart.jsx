@@ -178,9 +178,24 @@ function ShoppingCart() {
       .then((data) => this.setState({ totalReactPackages: data.total }));
   };
 
-  // send order request
+  // send request
   const sendOrder = () => {
+    // send Order
     fetch("http://localhost:5000/sendOrder")
+      .then((response) => response.json())
+      .then(data => {
+        if (data !== 'true') {
+          console.log(data);
+        } else {
+          console.log(data);
+        }
+      })
+      .catch(e => {
+        console.log(e);
+      });
+
+    // insert Delivery Status
+    fetch("http://localhost:5000/insertDeliveryStatus")
       .then((response) => response.json())
       .then(data => {
         if (data !== 'true') {
@@ -217,6 +232,9 @@ function ShoppingCart() {
     }
     return totalPrice;
   };
+
+  // back To Menu
+  const backToMenu = () => { window.location.assign("http://localhost:3000/Menu"); };
 
   // onClickMenu API
   const onClickMenu = (e) => {
@@ -267,8 +285,8 @@ function ShoppingCart() {
       window.location.assign("http://localhost:3000/Login");
     }
   };
-  return (
 
+  return (
     <div id="shopping-cart-full-component">
       {/* menu div */}
       <div id="menu">
@@ -584,7 +602,7 @@ function ShoppingCart() {
           <h2>總金額: {getPrice()}元</h2>
         </div>
         <div>
-          <button id="back-to-menu">
+          <button id="back-to-menu" onClick={backToMenu}>
           </button>
           {/* <h id="back-to-menu-text">返回菜單頁面</h> */}
         </div>
