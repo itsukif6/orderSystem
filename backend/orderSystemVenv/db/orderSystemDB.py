@@ -259,9 +259,19 @@ class DB:
             )
             first_row = cart_data.fetchone()
 
+            # price
+            price = 0
+            for i in range(1, 16):
+                if i <= 5:
+                    price += (int(first_row[i])*199)
+                elif i <= 10:
+                    price += (int(first_row[i])*30)
+                else:
+                    price += (int(first_row[i])*49)
+            
             # Insert Order Data and delete shopping cart data
             if self.cursor.execute(
-                "INSERT INTO OrderData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                "INSERT INTO OrderData (username, chicken, pizza, steak, friedRiceCake, lobster, coke, greenTea, bubbleTea, blackTea, honey, donuts, icecream, marshmallow, chocolate, special, time, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                 (
                     first_row[0],
                     first_row[1],
@@ -280,12 +290,149 @@ class DB:
                     first_row[14],
                     first_row[15],
                     first_row[16],
+                    str(price)
                 ),
-            ) and self.cursor.execute("DELETE FROM CartData WHERE username = ?;", (str(username),)):
+            ) and self.cursor.execute(
+                "DELETE FROM CartData WHERE username = ?;", (str(username),)
+            ):
                 print("insert into orderData and delete CartData successfully!")
                 self.conn.commit()
                 return True
+
+        except sqlite3.Error as e:
+            print("Error:", e)
+            return e
+
+    # get order data
+    def getOrderData(self):
+        try:
+            # Fetch username as a string
+            self.cursor.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            )
+            username = self.cursor.fetchone()[0]  # Get first username
+
+            # Bind username as a string parameter
+            order_data = self.cursor.execute(
+                "SELECT * FROM OrderData WHERE username = ?;", (str(username),)
+            )
+            first_row = order_data.fetchone()
+            if first_row:  # Check if a row was found
+                return first_row  # Access data using tuple indexing (e.g., first_row[0] for first column)
+            else:
+                print("No order data found for username:", username)
+
+        except sqlite3.Error as e:
+            print("Error:", e)
+            return e
+
+    # get Price
+    def getPrice(self):
+        try:
+            # Fetch username as a string
+            self.cursor.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            )
+            username = self.cursor.fetchone()[0]  # Get first username
+
+            # Bind username as a string parameter
+            order_data = self.cursor.execute(
+                "SELECT * FROM OrderData WHERE username = ?;", (str(username),)
+            )
+            first_row = order_data.fetchone()
+            if first_row:  # Check if a row was found
+                return first_row[17]  # Access Price using tuple indexing (e.g., first_row[0] for first column)
+            else:
+                print("No order data found for username:", username)
+
+        except sqlite3.Error as e:
+            print("Error:", e)
+            return e
+
+    # insert delivery status
+    def insertDeliveryStatus(self):
+        try:
+            # Fetch username as a string
+            self.cursor.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            )
+            username = self.cursor.fetchone()[0]  # Get username
+
+            # Fetch time as a string
+            self.cursor.execute(
+                "SELECT time FROM OrderData WHERE username = ?;", (username,)
+            )
+            time = self.cursor.fetchone()[0]  # Get time
+
+            # insert delivery status
+            if self.cursor.execute(
+                "INSERT INTO DeliveryData (username, status, time) VALUES (?, ?, ?);",
+                (
+                    username,
+                    1,
+                    time,
+                ),
+            ):
+                print("order receive successfully!")
+                self.conn.commit()
+                return True
+
+        except sqlite3.Error as e:
+            print("Error:", e)
+            return e
+        
+    # get delivery status
+    def getDeliveryStatus(self):
+        try:
+            # Fetch username as a string
+            self.cursor.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            )
+            username = self.cursor.fetchone()[0]  # Get username
+
+            # Fetch status as a string
+            self.cursor.execute(
+                "SELECT * FROM DeliveryData WHERE username = ?;", (username,)
+            )
+            status = self.cursor.fetchone()[1]  # Get status
+            return str(status)
+
+        except sqlite3.Error as e:
+            print("Error:", e)
+            return e
+
+    # update delivery status
+    def updateDeliveryStatus(self, status):
+        try:
+            # Fetch username as a string
+            self.cursor.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            )
+            username = self.cursor.fetchone()[0]  # Get username
+
+            # Fetch time as a string
+            self.cursor.execute(
+                "SELECT time FROM OrderData WHERE username = ?;", (username,)
+            )
+            time = self.cursor.fetchone()[0]  # Get time
+
+            # update delivery status
+            if self.cursor.execute(
+                "UPDATE DeliveryData SET status = ? WHERE username = ?;",
+                (status, username,),
+            ):
+                print(f"update order status to {status} successfully!")
+                self.conn.commit()
             
+            # if delivery finished successfully, delete order data
+            if status == 2:
+                self.cursor.execute(
+                    "DELETE FROM OrderData WHERE time = ?;", (str(time),)
+                )
+                self.conn.commit()
+                return True
+            else:
+                return True
         except sqlite3.Error as e:
             print("Error:", e)
             return e

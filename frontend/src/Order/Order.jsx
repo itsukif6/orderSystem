@@ -1,7 +1,10 @@
-﻿import React from 'react';
+﻿import React, { useState, useEffect } from "react";
 import './Order.css';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
+import preparingImg from "./preparing.png";
+import deliveringImg from "./delivering.png";
+import completeImg from "./complete.jpg";
 
 const items = [
   {
@@ -83,8 +86,46 @@ const items = [
     ],
   },
 ];
-const Order = () => {
+
+function Order() {
+  // useState hook to manage Delivery Status state
+  const [DeliveryStatus, setDeliveryStatus] = useState(1);
+  // useState hook to manage price
+  const [price, setPrice] = useState(null);
   
+  useEffect(() => {
+    getDeliveryStatus();
+    getPrice();
+    // title
+    document.title = 'Order Info';
+  }, []);
+
+  // get Delivery Status
+  const getDeliveryStatus = () => {
+    // send Order
+    fetch("http://localhost:5000/getDeliveryStatus")
+      .then((response) => response.json())
+      .then((data) => {
+        setDeliveryStatus(data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  // get Price
+  const getPrice = () => {
+    // send Order
+    fetch("http://localhost:5000/getPrice")
+      .then((response) => response.json())
+      .then((data) => {
+        setPrice(data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
   // logout
   const logout = () => {
     // Simple GET request using fetch
@@ -128,20 +169,56 @@ const Order = () => {
       logout();
       window.location.assign("http://localhost:3000/Login");
     }
+  }
 
-  };
   return (
-    <div id='menu'>
-      <Menu
-        onClick={onClickMenu}
-        style={{
-          width: 170,
-        }}
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        mode="inline"
-        items={items}
-      />
+    <div className='order-full-componenet'>
+      {/* menu */}
+      <div id="menu">
+
+        <Menu
+          onClick={onClickMenu}
+          style={{
+            width: 170,
+          }}
+          defaultSelectedKeys={['1']}
+          defaultOpenKeys={['sub1']}
+          mode="inline"
+          items={items}
+        />
+      </div>
+      {/* main component */}
+      <div className='order-componenet'>
+        <h1 id="order-data-text">訂單資訊頁面</h1>
+        <div className='food-status'>
+          {
+            (DeliveryStatus === 1) ? (
+              <div className='food-status-component'>
+                <div className="food-img">
+                  <img src={preparingImg} alt="preparingImg" className="food-status-img"></img>
+                </div>
+                <h2 className="order-status-text">餐點準備中</h2>
+              </div>
+            ) : (DeliveryStatus === 2) ? (
+              <div>
+                <img src={deliveringImg} alt="deliveringImg" className="food-status-img"></img>
+                <h2 className="order-status-text">餐點運送中</h2>
+              </div>
+            ) : (
+              <div>
+                <img src={completeImg} alt="completeImg" className="food-status-img"></img>
+                <h2 className="order-status-text">餐點已送達</h2>
+              </div>
+            )
+          }
+        </div>
+        <div id="cut-line"></div>
+        <div id="order-price-component">
+            <div id="order-price-text">
+              <h2 id="price-text-h2">訂單金額:{price}</h2>
+            </div>
+          </div>
+      </div>
     </div>
   );
 };

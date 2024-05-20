@@ -114,5 +114,58 @@ def sendOrder():
         else:
             return ("false")
     
+# get order from DB with login status
+@app.route('/getOrder', methods=['GET'])
+def getOrder():
+    if request.method == "GET":
+        orderData = db.getOrderData()
+        if orderData:
+            return (orderData)
+        else:
+            return ("false")
+        
+# get order from DB with login status
+@app.route('/getPrice', methods=['GET'])
+def getPrice():
+    if request.method == "GET":
+        price = db.getPrice()
+        if price:
+            print(price)
+            return (price)
+        else:
+            return ("false")
+        
+# insert Delivery status
+@app.route('/insertDeliveryStatus', methods=['GET'])
+def insertDeliveryStatus():
+    if request.method == "GET":
+        isDeliverySet = db.insertDeliveryStatus()
+        if isDeliverySet:
+            return ("true")
+        else:
+            return ("false")
+        
+# get Delivery status
+@app.route('/getDeliveryStatus', methods=['GET'])
+def getDeliveryStatus():
+    if request.method == "GET":
+        status = db.getDeliveryStatus()
+        if status:
+            return (status)
+        else:
+            return ("false")
+        
+# update Delivery status
+@app.route('/updateDeliveryStatus', methods=['GET', 'POST'])
+def updateDeliveryStatus():
+    if request.method == "POST":
+        data = request.json
+        status = int(data.get("status"))
+        isDeliveryUpdate = db.updateDeliveryStatus(status)
+        if isDeliveryUpdate:
+            return ("true")
+        else:
+            return ("false")
+    
 if __name__ == '__main__':
     app.run(debug=True)
