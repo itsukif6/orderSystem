@@ -127,13 +127,13 @@ def getOrder():
 # get order from DB with login status
 @app.route('/getPrice', methods=['GET'])
 def getPrice():
-    if request.method == "GET":
-        price = db.getPrice()
-        if price:
-            print(price)
-            return (price)
-        else:
-            return ("false")
+    # if request.method == "GET":
+    price = db.getPrice()
+    if price:
+        print(price)
+        return (str(price))
+    else:
+        return ("false")
         
 # insert Delivery status
 @app.route('/insertDeliveryStatus', methods=['GET'])
@@ -151,7 +151,7 @@ def getDeliveryStatus():
     if request.method == "GET":
         status = db.getDeliveryStatus()
         if status:
-            return (status)
+            return (str(status))
         else:
             return ("false")
         

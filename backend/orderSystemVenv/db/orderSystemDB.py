@@ -329,22 +329,27 @@ class DB:
     # get Price
     def getPrice(self):
         try:
+            cursor1 = self.conn.cursor()
             # Fetch username as a string
-            self.cursor.execute(
+            cursor1.execute(
                 "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
             )
-            username = self.cursor.fetchone()[0]  # Get first username
+            username = cursor1.fetchone()[0]  # Get first username
+            cursor1.close()
 
+            cursor2 = self.conn.cursor()
             # Bind username as a string parameter
-            order_data = self.cursor.execute(
+            order_data = cursor2.execute(
                 "SELECT * FROM OrderData WHERE username = ?;", (str(username),)
             )
             first_row = order_data.fetchone()
+            cursor2.close()
+
             if first_row:  # Check if a row was found
-                return first_row[17]  # Access Price using tuple indexing (e.g., first_row[0] for first column)
+                return str(first_row[17]) # Access Price using tuple indexing (e.g., first_row[0] for first column)
             else:
                 print("No order data found for username:", username)
-
+                
         except sqlite3.Error as e:
             print("Error:", e)
             return e

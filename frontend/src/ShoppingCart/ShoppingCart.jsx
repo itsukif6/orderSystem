@@ -17,7 +17,7 @@ import honeyImg from "./honey.png";
 import marshmallowImg from "./marshmallow.jpg";
 import chocolateImg from "./chocolate.jpg";
 import specialImg from "./special.png";
-import backImg from "./back.jpg";
+// import backImg from "./back.jpg";
 
 import {
   AppstoreOutlined,
@@ -118,7 +118,7 @@ function ShoppingCart() {
   useEffect(() => {
     fetchCartEmpty();
     // title
-    document.title = 'Shopping Cart';
+    document.title = "Shopping Cart";
   }, []);
 
   const fetchCartEmpty = () => {
@@ -183,28 +183,28 @@ function ShoppingCart() {
     // send Order
     fetch("http://localhost:5000/sendOrder")
       .then((response) => response.json())
-      .then(data => {
-        if (data !== 'true') {
+      .then((data) => {
+        if (data !== "true") {
           console.log(data);
         } else {
           console.log(data);
         }
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
 
     // insert Delivery Status
     fetch("http://localhost:5000/insertDeliveryStatus")
       .then((response) => response.json())
-      .then(data => {
-        if (data !== 'true') {
+      .then((data) => {
+        if (data !== "true") {
           console.log(data);
         } else {
           console.log(data);
         }
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
 
@@ -213,20 +213,21 @@ function ShoppingCart() {
 
   //get total price
   const getPrice = () => {
-    var i, totalPrice = 0;
+    var i,
+      totalPrice = 0;
     if (cartEmpty) {
       for (i = 1; i < 16; i++) {
         // food
         if (i <= 5) {
-          totalPrice += (cartEmpty[i] * 199)
+          totalPrice += cartEmpty[i] * 199;
         }
         // drink
         else if (i <= 10) {
-          totalPrice += (cartEmpty[i] * 30)
+          totalPrice += cartEmpty[i] * 30;
         }
         // dessert
         else if (i <= 15) {
-          totalPrice += (cartEmpty[i] * 49)
+          totalPrice += cartEmpty[i] * 49;
         }
       }
     }
@@ -234,7 +235,9 @@ function ShoppingCart() {
   };
 
   // back To Menu
-  const backToMenu = () => { window.location.assign("http://localhost:3000/Menu"); };
+  const backToMenu = () => {
+    window.location.assign("http://localhost:3000/Menu");
+  };
 
   // onClickMenu API
   const onClickMenu = (e) => {
@@ -354,240 +357,276 @@ function ShoppingCart() {
               {/* 第二版 */}
               <div className="shopping-cart-data">
                 {/* 若食物不為空才顯示 */}
-                {foodEmpty(1) !== 0 || foodEmpty(2) !== 0 || foodEmpty(3) !== 0 || foodEmpty(4) !== 0 || foodEmpty(5) !== 0 ? (
-                  <><h1 className="shopping-cart-food-title">主食 : </h1><div>
-                    {foodEmpty(1) ? (
-                      <div className="food-component">
-                        <img
-                          className="img"
-                          src={chickenImg}
-                          alt="chickenImg"
-                        ></img>
-                        <h2 className="food-name-2">烤雞 : {cartEmpty[1]} 份</h2>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(2) ? (
-                      <div className="food-component">
-                        <img className="img" src={pizzaImg} alt="pizzaImg"></img>
-                        <h2 className="food-name-2">披薩 : {cartEmpty[2]} 份</h2>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(3) ? (
-                      <div>
+                {foodEmpty(1) !== 0 ||
+                foodEmpty(2) !== 0 ||
+                foodEmpty(3) !== 0 ||
+                foodEmpty(4) !== 0 ||
+                foodEmpty(5) !== 0 ? (
+                  <>
+                    <h1 className="shopping-cart-food-title">主食 : </h1>
+                    <div>
+                      {foodEmpty(1) ? (
                         <div className="food-component">
                           <img
                             className="img"
-                            src={steakImg}
-                            alt="steakImg"
+                            src={chickenImg}
+                            alt="chickenImg"
                           ></img>
                           <h2 className="food-name-2">
-                            牛排 : {cartEmpty[3]} 份
+                            烤雞 : {cartEmpty[1]} 份
                           </h2>
                         </div>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(4) ? (
-                      <div>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(2) ? (
                         <div className="food-component">
                           <img
                             className="img"
-                            src={friedRiceCakeImg}
-                            alt="friedRiceCakeImg"
-                          ></img>
-                          <h2 className="food-name-4">
-                            辣炒年糕 : {cartEmpty[4]} 份
-                          </h2>
-                        </div>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(5) ? (
-                      <div>
-                        <div className="food-component">
-                          <img
-                            className="img"
-                            src={lobsterImg}
-                            alt="lobsterImg"
+                            src={pizzaImg}
+                            alt="pizzaImg"
                           ></img>
                           <h2 className="food-name-2">
-                            龍蝦 : {cartEmpty[5]} 份
+                            披薩 : {cartEmpty[2]} 份
                           </h2>
                         </div>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                  </div></>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(3) ? (
+                        <div>
+                          <div className="food-component">
+                            <img
+                              className="img"
+                              src={steakImg}
+                              alt="steakImg"
+                            ></img>
+                            <h2 className="food-name-2">
+                              牛排 : {cartEmpty[3]} 份
+                            </h2>
+                          </div>
+                        </div>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(4) ? (
+                        <div>
+                          <div className="food-component">
+                            <img
+                              className="img"
+                              src={friedRiceCakeImg}
+                              alt="friedRiceCakeImg"
+                            ></img>
+                            <h2 className="food-name-4">
+                              辣炒年糕 : {cartEmpty[4]} 份
+                            </h2>
+                          </div>
+                        </div>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(5) ? (
+                        <div>
+                          <div className="food-component">
+                            <img
+                              className="img"
+                              src={lobsterImg}
+                              alt="lobsterImg"
+                            ></img>
+                            <h2 className="food-name-2">
+                              龍蝦 : {cartEmpty[5]} 份
+                            </h2>
+                          </div>
+                        </div>
+                      ) : (
+                        <p></p>
+                      )}
+                    </div>
+                  </>
                 ) : (
                   <p></p>
                 )}
               </div>
               <div className="shopping-cart-data">
                 {/* 若飲料不為空才顯示 */}
-                {foodEmpty(6) !== 0 || foodEmpty(7) !== 0 || foodEmpty(8) !== 0 || foodEmpty(9) !== 0 || foodEmpty(10) !== 0 ? (
-                  <><h1 className="shopping-cart-food-title">飲料 : </h1><div>
-                    {foodEmpty(6) ? (
-                      <div className="food-component">
-                        <img className="img" src={cokeImg} alt="cokeImg"></img>
-                        <h2 className="food-name-4">
-                          可口可樂 : {cartEmpty[6]} 杯
-                        </h2>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(7) ? (
-                      <div className="food-component">
-                        <img
-                          className="img"
-                          src={greenTeaImg}
-                          alt="greenTeaImg"
-                        ></img>
-                        <h2 className="food-name-2">綠茶 : {cartEmpty[7]} 杯</h2>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(8) ? (
-                      <div>
+                {foodEmpty(6) !== 0 ||
+                foodEmpty(7) !== 0 ||
+                foodEmpty(8) !== 0 ||
+                foodEmpty(9) !== 0 ||
+                foodEmpty(10) !== 0 ? (
+                  <>
+                    <h1 className="shopping-cart-food-title">飲料 : </h1>
+                    <div>
+                      {foodEmpty(6) ? (
                         <div className="food-component">
                           <img
                             className="img"
-                            src={bubbleTeaImg}
-                            alt="bubbleTeaImg"
+                            src={cokeImg}
+                            alt="cokeImg"
                           ></img>
                           <h2 className="food-name-4">
-                            珍珠奶茶 : {cartEmpty[8]} 杯
+                            可口可樂 : {cartEmpty[6]} 杯
                           </h2>
                         </div>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(9) ? (
-                      <div>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(7) ? (
                         <div className="food-component">
                           <img
                             className="img"
-                            src={blackTeaImg}
-                            alt="blackTeaImg"
+                            src={greenTeaImg}
+                            alt="greenTeaImg"
                           ></img>
                           <h2 className="food-name-2">
-                            紅茶 : {cartEmpty[9]} 杯
+                            綠茶 : {cartEmpty[7]} 杯
                           </h2>
                         </div>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(10) ? (
-                      <div>
-                        <div className="food-component">
-                          <img
-                            className="img"
-                            src={honeyImg}
-                            alt="honeyImg"
-                          ></img>
-                          <h2 className="food-name-2">
-                            蜂蜜 : {cartEmpty[10]} 杯
-                          </h2>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(8) ? (
+                        <div>
+                          <div className="food-component">
+                            <img
+                              className="img"
+                              src={bubbleTeaImg}
+                              alt="bubbleTeaImg"
+                            ></img>
+                            <h2 className="food-name-4">
+                              珍珠奶茶 : {cartEmpty[8]} 杯
+                            </h2>
+                          </div>
                         </div>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                  </div></>) : (
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(9) ? (
+                        <div>
+                          <div className="food-component">
+                            <img
+                              className="img"
+                              src={blackTeaImg}
+                              alt="blackTeaImg"
+                            ></img>
+                            <h2 className="food-name-2">
+                              紅茶 : {cartEmpty[9]} 杯
+                            </h2>
+                          </div>
+                        </div>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(10) ? (
+                        <div>
+                          <div className="food-component">
+                            <img
+                              className="img"
+                              src={honeyImg}
+                              alt="honeyImg"
+                            ></img>
+                            <h2 className="food-name-2">
+                              蜂蜜 : {cartEmpty[10]} 杯
+                            </h2>
+                          </div>
+                        </div>
+                      ) : (
+                        <p></p>
+                      )}
+                    </div>
+                  </>
+                ) : (
                   <p></p>
                 )}
               </div>
               <div className="shopping-cart-data">
                 {/* 若甜點不為空才顯示 */}
-                {foodEmpty(11) !== 0 || foodEmpty(12) !== 0 || foodEmpty(13) !== 0 || foodEmpty(14) !== 0 || foodEmpty(15) !== 0 ? (
-                  <><h1 className="shopping-cart-food-title">甜點 : </h1><div>
-                    {foodEmpty(11) ? (
-                      <div className="food-component">
-                        <img
-                          className="img"
-                          src={donutsImg}
-                          alt="donutsImg"
-                        ></img>
-                        <h2 className="food-name-3">
-                          甜甜圈 : {cartEmpty[11]} 份
-                        </h2>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(12) ? (
-                      <div className="food-component">
-                        <img
-                          className="img"
-                          src={icecreamImg}
-                          alt="icecreamImg"
-                        ></img>
-                        <h2 className="food-name-3">
-                          冰淇淋 : {cartEmpty[12]} 份
-                        </h2>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(13) ? (
-                      <div>
+                {foodEmpty(11) !== 0 ||
+                foodEmpty(12) !== 0 ||
+                foodEmpty(13) !== 0 ||
+                foodEmpty(14) !== 0 ||
+                foodEmpty(15) !== 0 ? (
+                  <>
+                    <h1 className="shopping-cart-food-title">甜點 : </h1>
+                    <div>
+                      {foodEmpty(11) ? (
                         <div className="food-component">
                           <img
                             className="img"
-                            src={marshmallowImg}
-                            alt="marshmallowImg"
+                            src={donutsImg}
+                            alt="donutsImg"
                           ></img>
                           <h2 className="food-name-3">
-                            棉花糖 : {cartEmpty[13]} 份
+                            甜甜圈 : {cartEmpty[11]} 份
                           </h2>
                         </div>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(14) ? (
-                      <div>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(12) ? (
                         <div className="food-component">
                           <img
                             className="img"
-                            src={chocolateImg}
-                            alt="chocolateImg"
+                            src={icecreamImg}
+                            alt="icecreamImg"
                           ></img>
                           <h2 className="food-name-3">
-                            巧克力 : {cartEmpty[14]} 份
+                            冰淇淋 : {cartEmpty[12]} 份
                           </h2>
                         </div>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                    {foodEmpty(15) ? (
-                      <div>
-                        <div className="food-component">
-                          <img
-                            className="img"
-                            src={specialImg}
-                            alt="specialImg"
-                          ></img>
-                          <h2 className="food-name-4">
-                            特別甜點 : {cartEmpty[15]} 份
-                          </h2>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(13) ? (
+                        <div>
+                          <div className="food-component">
+                            <img
+                              className="img"
+                              src={marshmallowImg}
+                              alt="marshmallowImg"
+                            ></img>
+                            <h2 className="food-name-3">
+                              棉花糖 : {cartEmpty[13]} 份
+                            </h2>
+                          </div>
                         </div>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                  </div></>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(14) ? (
+                        <div>
+                          <div className="food-component">
+                            <img
+                              className="img"
+                              src={chocolateImg}
+                              alt="chocolateImg"
+                            ></img>
+                            <h2 className="food-name-3">
+                              巧克力 : {cartEmpty[14]} 份
+                            </h2>
+                          </div>
+                        </div>
+                      ) : (
+                        <p></p>
+                      )}
+                      {foodEmpty(15) ? (
+                        <div>
+                          <div className="food-component">
+                            <img
+                              className="img"
+                              src={specialImg}
+                              alt="specialImg"
+                            ></img>
+                            <h2 className="food-name-4">
+                              特別甜點 : {cartEmpty[15]} 份
+                            </h2>
+                          </div>
+                        </div>
+                      ) : (
+                        <p></p>
+                      )}
+                    </div>
+                  </>
                 ) : (
                   <p></p>
                 )}
@@ -602,8 +641,7 @@ function ShoppingCart() {
           <h2>總金額: {getPrice()}元</h2>
         </div>
         <div>
-          <button id="back-to-menu" onClick={backToMenu}>
-          </button>
+          <button id="back-to-menu" onClick={backToMenu}></button>
           {/* <h id="back-to-menu-text">返回菜單頁面</h> */}
         </div>
       </div>
