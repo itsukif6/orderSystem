@@ -186,6 +186,22 @@ function ShoppingCart() {
       .then((data) => {
         if (data !== "true") {
           console.log(data);
+
+          // insert Delivery Status
+          fetch("http://localhost:5000/insertDeliveryStatus")
+            .then((response) => response.json())
+            .then((data) => {
+              if (data !== "true") {
+                console.log("123", data);
+                window.location.assign("http://localhost:3000/Order");
+              } else {
+                console.log(data);
+              }
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+
         } else {
           console.log(data);
         }
@@ -193,22 +209,6 @@ function ShoppingCart() {
       .catch((e) => {
         console.log(e);
       });
-
-    // insert Delivery Status
-    fetch("http://localhost:5000/insertDeliveryStatus")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data !== "true") {
-          console.log(data);
-        } else {
-          console.log(data);
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-
-    window.location.assign("http://localhost:3000/Order");
   };
 
   //get total price
@@ -307,7 +307,9 @@ function ShoppingCart() {
       <div id="shopping-cart-component">
         {isCartEmpty() ? (
           // if no cart in this username, show empty icon
-          <Empty />
+          <div id="empty-component">
+            <Empty />
+          </div>
         ) : (
           // else, show cart
           <div id="shopping-cart-title-component">
@@ -358,10 +360,10 @@ function ShoppingCart() {
               <div className="shopping-cart-data">
                 {/* 若食物不為空才顯示 */}
                 {foodEmpty(1) !== 0 ||
-                foodEmpty(2) !== 0 ||
-                foodEmpty(3) !== 0 ||
-                foodEmpty(4) !== 0 ||
-                foodEmpty(5) !== 0 ? (
+                  foodEmpty(2) !== 0 ||
+                  foodEmpty(3) !== 0 ||
+                  foodEmpty(4) !== 0 ||
+                  foodEmpty(5) !== 0 ? (
                   <>
                     <h1 className="shopping-cart-food-title">主食 : </h1>
                     <div>
@@ -450,10 +452,10 @@ function ShoppingCart() {
               <div className="shopping-cart-data">
                 {/* 若飲料不為空才顯示 */}
                 {foodEmpty(6) !== 0 ||
-                foodEmpty(7) !== 0 ||
-                foodEmpty(8) !== 0 ||
-                foodEmpty(9) !== 0 ||
-                foodEmpty(10) !== 0 ? (
+                  foodEmpty(7) !== 0 ||
+                  foodEmpty(8) !== 0 ||
+                  foodEmpty(9) !== 0 ||
+                  foodEmpty(10) !== 0 ? (
                   <>
                     <h1 className="shopping-cart-food-title">飲料 : </h1>
                     <div>
@@ -542,10 +544,10 @@ function ShoppingCart() {
               <div className="shopping-cart-data">
                 {/* 若甜點不為空才顯示 */}
                 {foodEmpty(11) !== 0 ||
-                foodEmpty(12) !== 0 ||
-                foodEmpty(13) !== 0 ||
-                foodEmpty(14) !== 0 ||
-                foodEmpty(15) !== 0 ? (
+                  foodEmpty(12) !== 0 ||
+                  foodEmpty(13) !== 0 ||
+                  foodEmpty(14) !== 0 ||
+                  foodEmpty(15) !== 0 ? (
                   <>
                     <h1 className="shopping-cart-food-title">甜點 : </h1>
                     <div>
@@ -638,7 +640,13 @@ function ShoppingCart() {
           </div>
         )}
         <div id="price-text">
-          <h2>總金額: {getPrice()}元</h2>
+          {
+            foodEmpty ? (
+              <div></div>
+            ) : (
+              <h2>總金額: {getPrice()}元</h2>
+            )
+          }
         </div>
         <div>
           <button id="back-to-menu" onClick={backToMenu}></button>
