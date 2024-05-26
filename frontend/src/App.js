@@ -6,6 +6,7 @@ import Menu from "./Menu/Menu";
 import Register from "./Register/Register";
 import Order from "./Order/Order";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
+import OrderTrack from "./OrderTrack/OrderTrack";
 import "./App.css";
 
 const App = () => {
@@ -33,6 +34,10 @@ const App = () => {
     {
       path: "/ShoppingCart",
       element: <ShoppingCart />,
+    },
+    {
+      path: "/Track",
+      element: <OrderTrack />,
     },
   ]);
 

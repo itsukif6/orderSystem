@@ -120,9 +120,9 @@ def getOrder():
     if request.method == "GET":
         orderData = db.getOrderData()
         if orderData:
-            return (orderData)
+            return jsonify(orderData)  # Return JSON response
         else:
-            return ("false")
+            return jsonify("false"), 404
         
 # get order from DB with login status
 @app.route('/getPrice', methods=['GET'])

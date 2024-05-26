@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect } from "react";
-import "./Order.css";
+import "./OrderTrack.css";
 import {
   AppstoreOutlined,
   MailOutlined,
@@ -91,34 +91,18 @@ const items = [
   },
 ];
 
-function Order() {
-  // useState hook to get Delivery Status state
+function OrderTrack() {
+  // useState hook to manage Delivery Status state
   const [DeliveryStatus, setDeliveryStatus] = useState(1);
   // useState hook to manage price
   const [price, setPrice] = useState(null);
-  // useState hook to get Order Data
-  const [orderData, setOrderData] = useState(null);
-  console.log(orderData);
+
   useEffect(() => {
     getDeliveryStatus();
     getPrice();
-    getOrderData();
     // title
-    document.title = "Order Info";
+    document.title = "Order Track";
   }, []);
-
-  // get Delivery Status
-  const getOrderData = () => {
-    // get Order
-    fetch("http://localhost:5000/getOrder")
-      .then((response) => response.json())
-      .then((data) => {
-        setOrderData(data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
 
   // get Delivery Status
   const getDeliveryStatus = () => {
@@ -220,7 +204,7 @@ function Order() {
       </div>
       {/* main component */}
       <div className="order-componenet">
-        {/* <h1 id="order-data-text">訂單資訊頁面</h1>
+        <h1 id="order-data-text">訂單送餐狀態頁面</h1>
         <div className="food-status">
           {DeliveryStatus === 1 ? (
             <div className="food-status-component">
@@ -252,50 +236,16 @@ function Order() {
               <h2 className="order-status-text">餐點已送達</h2>
             </div>
           )}
-        </div> */}
-        {/* <div id="cut-line"></div> */}
-        {/* <div id="order-price-component">
+        </div>
+        <div id="cut-line"></div>
+        <div id="order-price-component">
           <div id="order-price-text">
             <h2 id="price-text-h2">訂單金額:{price}</h2>
           </div>
-        </div> */}
-        <div id="order-info">
-          <h1 className="order-info-text">
-            訂購人
-          </h1>
-          <h1 className="order-info-text">
-            訂單時間
-          </h1>
-          <h1 className="order-info-text">
-            訂單內容
-          </h1>
-          <h1 className="order-info-text">
-            訂單狀態
-          </h1>
-          <h1 className="order-info-text">
-            總金額
-          </h1>
-        </div>
-        <div id="user-info">
-          <h1 className="user-info-text">
-            {orderData[0]}
-          </h1>
-          <h1 className="user-info-text">
-            {orderData[16]}
-          </h1>
-          <h1 className="user-info-text">
-            {orderData}
-          </h1>
-          <h1 className="user-info-text">
-            {DeliveryStatus}
-          </h1>
-          <h1 className="user-info-text">
-            {orderData[17]}
-          </h1>
         </div>
       </div>
     </div>
   );
 }
 
-export default Order;
+export default OrderTrack;
