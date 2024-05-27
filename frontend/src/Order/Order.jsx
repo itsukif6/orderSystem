@@ -146,6 +146,30 @@ function Order() {
       });
   };
 
+  // time settings
+  if (orderData){
+    var username = orderData[0];
+    var time = orderData[16];
+    var timeYY = time.substring(0,4);
+    var timeMM = time.substring(5,7);
+    var timeDD = time.substring(8,10);
+    var timeHour = time.substring(11,13);
+    var timeMinute = time.substring(14,16);
+    var timeSecond = time.substring(17,19);
+  };
+  
+  // Delivery status
+  var DeliveryText;
+  if (DeliveryStatus){
+    if (DeliveryStatus === 1){
+      DeliveryText = "餐點準備中";
+    }else if (DeliveryStatus === 2){
+      DeliveryText = "餐點運送中";
+    }else if (DeliveryStatus === 3){
+      DeliveryText = "餐點已送達";
+    }
+  };
+
   // logout
   const logout = () => {
     // Simple GET request using fetch
@@ -219,7 +243,7 @@ function Order() {
         />
       </div>
       {/* main component */}
-      <div className="order-componenet">
+      <div className="order-componenets">
         {/* <h1 id="order-data-text">訂單資訊頁面</h1>
         <div className="food-status">
           {DeliveryStatus === 1 ? (
@@ -278,19 +302,24 @@ function Order() {
         </div>
         <div id="user-info">
           <h1 className="user-info-text">
-            {orderData[0]}
+            {username}
           </h1>
           <h1 className="user-info-text">
-            {orderData[16]}
+            {timeYY}年&thinsp;
+            {timeMM}月&thinsp;
+            {timeDD}日&thinsp;
+            {timeHour}時&thinsp;
+            {timeMinute}分&thinsp;
+            {timeSecond}秒&thinsp;
           </h1>
           <h1 className="user-info-text">
             {orderData}
           </h1>
           <h1 className="user-info-text">
-            {DeliveryStatus}
+            {DeliveryText}
           </h1>
           <h1 className="user-info-text">
-            {orderData[17]}
+            {price}
           </h1>
         </div>
       </div>

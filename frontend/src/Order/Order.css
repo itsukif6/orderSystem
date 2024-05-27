@@ -39,7 +39,7 @@ svg {
 }
 
 /* main component */
-.order-componenet {
+.order-componenets {
     height: 50rem;
     width: 80rem;
     background-image: url('./gray.jpg');
@@ -54,11 +54,29 @@ svg {
     border-width: 0.3rem;
 
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 
+#order-info{
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-radius: 1rem;
+    border: 3rem;
+    border-style: double;
+    border-width: 0.3rem;
+}
+
+#user-info{
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-radius: 1rem;
+    border: 3rem;
+    border-style: double;
+    border-width: 0.3rem;
+}
+/* 
 #cut-line {
     background-image: repeating-linear-gradient(45deg, #6069c4, #6069c4 33px, transparent 0, transparent 41px, #b8dd73 0, #b8dd73 74px, transparent 0, transparent 82px);
     background-position-x: -1.875rem;
@@ -107,4 +125,4 @@ svg {
     border-bottom: 0.1rem solid;
     margin-top: 3rem;
     font-size: 2rem;
-}
+} */

@@ -1,4 +1,4 @@
-﻿.order-full-componenet {
+﻿.ordertrack-full-componenet {
     background-image: url('./start.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -39,7 +39,7 @@ svg {
 }
 
 /* main component */
-.order-componenet {
+.ordertrack-componenet {
     height: 50rem;
     width: 80rem;
     background-image: url('./gray.jpg');
@@ -89,13 +89,13 @@ svg {
 
 }
 
-#order-data-text {
+#ordertrack-data-text {
     margin-top: 5rem;
     padding-bottom: 0.3rem;
     border-bottom: 0.1rem solid;
 }
 
-.order-status-text {
+.ordertrack-status-text {
     margin-top: 2rem;
     display: flex;
     justify-content: center;
