@@ -1,0 +1,42 @@
+﻿body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+#welcome-component {
+  font-family: SimHei, SimSun;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+
+  /* gray background */
+  background-image: url("./start.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.username-text {
+  color: aliceblue;
+  margin-top: 0rem;
+  font-size: 2.2rem;
+}
+
+#text-component {
+  display: flex;
+  flex-direction: column;
+  /* margin-right: 3rem; */
+}
+
+.ant-select-selection-item {
+  font-size: 1.2rem;
+}
+
+.ant-flex.css-dev-only-do-not-override-1kuana8.ant-flex-gap-small {
+  margin-top: 1.5rem;
+}

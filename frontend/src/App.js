@@ -7,6 +7,7 @@ import Register from "./Register/Register";
 import Order from "./Order/Order";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
 import OrderTrack from "./OrderTrack/OrderTrack";
+import Staff from "./Staff/Staff";
 import "./App.css";
 
 const App = () => {
@@ -38,6 +39,10 @@ const App = () => {
     {
       path: "/Track",
       element: <OrderTrack />,
+    },
+    {
+      path: "/Staff",
+      element: <Staff />,
     },
   ]);
 

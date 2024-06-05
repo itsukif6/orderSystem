@@ -1,80 +1,79 @@
 ﻿.order-full-componenet {
-    background-image: url('./start.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
+  background-image: url("./start.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: SimHei, SimSun;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: SimHei, SimSun;
 }
 
-
 #menu {
-    position: absolute;
-    right: 0;
-    border: 5.5px solid rgb(245, 245, 245);
-    border-style: double;
+  position: absolute;
+  right: 0;
+  border: 5.5px solid rgb(245, 245, 245);
+  border-style: double;
 
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
 .ant-menu-title-content {
-    color: #000;
+  color: #000;
 }
 
 svg {
-    color: #000;
+  color: #000;
 }
 
 .ant-menu-submenu-title {
-    color: #000;
+  color: #000;
 }
 
 .ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light.css-dev-only-do-not-override-1kuana8 {
-    background-color: rgb(245, 245, 245);
+  background-color: rgb(245, 245, 245);
 }
 
 /* main component */
 .order-componenets {
-    height: 50rem;
-    width: 80rem;
-    background-image: url('./gray.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
+  height: 50rem;
+  width: 80rem;
+  background-image: url("./gray.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 
-    border-radius: 1rem;
-    border: 3rem;
-    border-style: double;
-    border-width: 0.3rem;
+  border-radius: 1rem;
+  border: 3rem;
+  border-style: double;
+  border-width: 0.3rem;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
-#order-info{
-    padding-left: 3rem;
-    padding-right: 3rem;
-    border-radius: 1rem;
-    border: 3rem;
-    border-style: double;
-    border-width: 0.3rem;
+#order-info {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  border-radius: 1rem;
+  border: 3rem;
+  border-style: double;
+  border-width: 0.3rem;
 }
 
-#user-info{
-    padding-left: 3rem;
-    padding-right: 3rem;
-    border-radius: 1rem;
-    border: 3rem;
-    border-style: double;
-    border-width: 0.3rem;
+#user-info {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  border-radius: 1rem;
+  border: 3rem;
+  border-style: double;
+  border-width: 0.3rem;
 }
 /* 
 #cut-line {
@@ -126,3 +125,27 @@ svg {
     margin-top: 3rem;
     font-size: 2rem;
 } */
+
+#show-info-button {
+  font-size: 1.3rem;
+  width: 8rem;
+  font-weight: 1000;
+  color: #000;
+  border: 1px solid rgb(0 0 0 / 50%);
+}
+
+.info-comtainer {
+  font-size: x-large;
+}
+
+.MuiTypography-root.MuiTypography-h6.MuiDialogTitle-root.css-bdhsul-MuiTypography-root-MuiDialogTitle-root {
+  font-size: xx-large;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation24.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+  width: 30rem;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  font-size: large;
+}

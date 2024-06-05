@@ -84,6 +84,10 @@ const items = [
     icon: <SettingOutlined />,
     children: [
       {
+        key: "32",
+        label: "Staff",
+      },
+      {
         key: "31",
         label: "Log Out",
       },
@@ -184,6 +188,13 @@ function OrderTrack() {
       // log Out
       logout();
       window.location.assign("http://localhost:3000/Login");
+    } else if (e.key === "32") {
+      // Staff Setting page
+      window.open(
+        "http://localhost:3000/Staff",
+        "_blank",
+        "width=1200,height=800"
+      );
     }
   };
 
