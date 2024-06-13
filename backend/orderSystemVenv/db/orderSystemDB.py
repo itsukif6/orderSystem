@@ -400,7 +400,6 @@ class DB:
             time = cursor2.fetchone()[0]  # Get time
             cursor2.close()
 
-
             # insert delivery status
             cursor3 = self.conn.cursor()
             if cursor3.execute(
@@ -475,16 +474,46 @@ class DB:
                 print(f"update order status to {status} successfully!")
                 self.conn.commit()
             cursor3.close()
+            return True
+
+        except sqlite3.Error as e:
+            print("Error:", e)
+            return e
+
+    # delete delivery and order data
+    def deleteDelivery(self):
+        try:
+            # Fetch username as a string
+            cursor1 = self.conn.cursor()
+            cursor1.execute(
+                "SELECT username FROM UserData WHERE loginstatus = ?;", (1,)
+            )
+            username = cursor1.fetchone()[0]  # Get username
+            cursor1.close()
+
+            # Fetch time as a string
+            cursor2 = self.conn.cursor()
+            cursor2.execute(
+                "SELECT time FROM OrderData WHERE username = ?;", (username,)
+            )
+            time = cursor2.fetchone()[0]  # Get time
+            cursor2.close()
+
+            # update delivery status
+            cursor3 = self.conn.cursor()
+            if cursor3.execute(
+                "DELETE FROM DeliveryData WHERE time = ?;", (str(time),)
+            ):
+                print(f"delete order status successfully!")
+                self.conn.commit()
+            cursor3.close()
 
             # if delivery finished successfully, delete order data
             cursor4 = self.conn.cursor()
-            if status == 2:
-                cursor4.execute("DELETE FROM OrderData WHERE time = ?;", (str(time),))
-                self.conn.commit()
-                cursor4.close()
-                return True
-            else:
-                return True
+            cursor4.execute("DELETE FROM OrderData WHERE time = ?;", (str(time),))
+            self.conn.commit()
+            cursor4.close()
+            return True
         except sqlite3.Error as e:
             print("Error:", e)
             return e

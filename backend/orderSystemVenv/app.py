@@ -160,12 +160,21 @@ def getDeliveryStatus():
 def updateDeliveryStatus():
     if request.method == "POST":
         data = request.json
-        status = int(data.get("status"))
-        isDeliveryUpdate = db.updateDeliveryStatus(status)
+        value = data.get("value")
+        isDeliveryUpdate = db.updateDeliveryStatus(value)
         if isDeliveryUpdate:
             return ("true")
         else:
             return ("false")
-    
+
+# update Delivery status
+@app.route('/deleteDelivery', methods=['GET'])
+def deleteDelivery():
+    if request.method == "GET":
+        isDeliveryUpdate = db.deleteDelivery()
+        if isDeliveryUpdate:
+            return ("true")
+        else:
+            return ("false")
 if __name__ == '__main__':
     app.run(debug=True)

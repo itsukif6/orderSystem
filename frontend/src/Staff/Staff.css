@@ -40,3 +40,29 @@
 .ant-flex.css-dev-only-do-not-override-1kuana8.ant-flex-gap-small {
   margin-top: 1.5rem;
 }
+
+/* #change-input {
+  display: none;
+} */
+
+#staff-password {
+  width: 5rem;
+  height: 1.5rem;
+}
+
+#staff-password-submit-button {
+  width: 3rem;
+  font-size: small;
+  height: 1.9rem;
+
+}
+
+#staff-password-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#staff-password-text{
+  color: aliceblue;
+  font-size: 1.3rem;
+}
