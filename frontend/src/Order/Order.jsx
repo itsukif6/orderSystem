@@ -237,14 +237,14 @@ function Order() {
     } else if (e.key === "12") {
       // developer gmail API
       window.open(
-        "https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRlQQMQvfXBMvcxvHpDlgNdsDzJqzRpSTmgjPjzRdKFfGWcnJvhksBPPrZtKqcmnjqjWjCv",
+        "https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRtsnXNcbPtcwnvnnCjlFLJNvwkDzGhzkmVcmzqCZlbqDwxsgnKsJJTBxqmNNCvCswGLRdb",
         "_blank",
         "width=1200,height=800"
       );
     } else if (e.key === "13") {
       // owner gmail API
       window.open(
-        "https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRlQQMQvfXBMvcxvHpDlgNdsDzJqzRpSTmgjPjzRdKFfGWcnJvhksBPPrZtKqcmnjqjWjCv",
+        "https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRtsnXNcbPtcwnvnnCjlFLJNvwkDzGhzkmVcmzqCZlbqDwxsgnKsJJTBxqmNNCvCswGLRdb",
         "_blank",
         "width=1200,height=800"
       );
@@ -303,13 +303,13 @@ function Order() {
             <Empty />
           </div>
         ) : (
-          <div>
+          <>
             <div id="order-info">
-              <h1 className="order-info-text">訂購人</h1>
-              <h1 className="order-info-text">訂單時間</h1>
-              <h1 className="order-info-text">訂單內容</h1>
-              <h1 className="order-info-text">訂單狀態</h1>
-              <h1 className="order-info-text">總金額</h1>
+              <h1 className="order-info-text">訂購人&nbsp; :</h1>
+              <h1 className="order-info-text">訂單時間 :</h1>
+              <h1 className="order-info-text">訂單內容 :</h1>
+              <h1 className="order-info-text">訂單狀態 :</h1>
+              <h1 className="order-info-text">總金額&nbsp; :</h1>
             </div>
             <div id="user-info">
               <h1 className="user-info-text">{username}</h1>
@@ -495,7 +495,7 @@ function Order() {
               <h1 className="user-info-text">{DeliveryText}</h1>
               <h1 className="user-info-text">{price}</h1>
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>

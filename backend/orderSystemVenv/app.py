@@ -162,6 +162,7 @@ def updateDeliveryStatus():
         data = request.json
         value = data.get("value")
         isDeliveryUpdate = db.updateDeliveryStatus(value)
+        print(value)
         if isDeliveryUpdate:
             return ("true")
         else:

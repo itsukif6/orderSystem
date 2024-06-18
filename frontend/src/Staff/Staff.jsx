@@ -130,8 +130,13 @@ function Staff() {
     e.preventDefault();
     // Hide the password component and show the change input component
     setShowPasswordComponent(false);
-    setShowChangeInput(true);
-  }
+    if (value === "12345678") {
+      console.log("1");
+      setShowChangeInput(true);
+    } else {
+      alert("Password wrong, please F5 and try again.");
+    }
+  };
 
   // set time to shut down 
   const delay = millis => new Promise((resolve, reject) => {
@@ -156,11 +161,6 @@ function Staff() {
     };
   };
 
-  const checkPassword = () => {
-    if (value === 12345678) {
-      console.log("1");
-    }
-  };
 
   console.log(orderData)
   return (
@@ -171,12 +171,11 @@ function Staff() {
             <form onSubmit={handleSubmit} id="staff-password-component">
               <p id="staff-password-text">請輸入密碼:</p>
               <input value={value} onInput={handleStaffPasswordInput} required type="text" id="staff-password" />
-              <button type="submit" id="staff-password-submit-button">送出</button>
+              <button type="submit" id="staff-password-submit-button" >送出</button>
             </form>
             {result && <p>{result}</p>}
           </div>
         )}
-        {/* {checkPassword} */}
         {showChangeInput && (
           <div id="change-input">
             <div id="text-component">
@@ -220,6 +219,7 @@ function Staff() {
             )}
           </div>
         )}
+
       </>
     </div>
   );

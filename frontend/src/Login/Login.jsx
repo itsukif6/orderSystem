@@ -57,7 +57,7 @@ const App = () => {
         id="components-form-demo-normal-login"
         className="background-image-container"
       >
-        <h1 id="login-string">飲料點餐系統登入</h1>
+        <h1 id="login-string">餐廳點餐系統登入</h1>
         <Form
           name="normal_login"
           className="login-form"

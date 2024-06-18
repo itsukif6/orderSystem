@@ -184,3 +184,7 @@ input {
     border-width: 0.5rem;
     border-radius: 1rem;
 }
+
+#back-to-menu{
+    margin-right: 2rem;
+}

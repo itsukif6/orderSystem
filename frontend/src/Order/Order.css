@@ -60,20 +60,20 @@ svg {
 
 #order-info {
   padding-left: 3rem;
-  padding-right: 3rem;
-  border-radius: 1rem;
-  border: 3rem;
-  border-style: double;
-  border-width: 0.3rem;
+  /* padding-right: 3rem; */
+  /* border-radius: 1rem; */
+  /* border: 3rem; */
+  /* border-style: double; */
+  /* border-width: 0.3rem; */
 }
 
 #user-info {
-  padding-left: 3rem;
+  padding-left: 2rem;
   padding-right: 3rem;
-  border-radius: 1rem;
-  border: 3rem;
-  border-style: double;
-  border-width: 0.3rem;
+  /* border-radius: 1rem; */
+  /* border: 3rem; */
+  /* border-style: double; */
+  /* border-width: 0.3rem; */
 }
 /* 
 #cut-line {

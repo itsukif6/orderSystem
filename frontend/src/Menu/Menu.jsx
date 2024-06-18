@@ -227,14 +227,14 @@ function OrderMenu() {
     } else if (e.key === "12") {
       // developer gmail API
       window.open(
-        "https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRlQQMQvfXBMvcxvHpDlgNdsDzJqzRpSTmgjPjzRdKFfGWcnJvhksBPPrZtKqcmnjqjWjCv",
+        "https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRtsnXNcbPtcwnvnnCjlFLJNvwkDzGhzkmVcmzqCZlbqDwxsgnKsJJTBxqmNNCvCswGLRdb",
         "_blank",
         "width=1200,height=800"
       );
     } else if (e.key === "13") {
       // owner gmail API
       window.open(
-        "https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRlQQMQvfXBMvcxvHpDlgNdsDzJqzRpSTmgjPjzRdKFfGWcnJvhksBPPrZtKqcmnjqjWjCv",
+        "https://mail.google.com/mail/u/0/?hl=zh-TW#inbox?compose=DmwnWrRtsnXNcbPtcwnvnnCjlFLJNvwkDzGhzkmVcmzqCZlbqDwxsgnKsJJTBxqmNNCvCswGLRdb",
         "_blank",
         "width=1200,height=800"
       );
