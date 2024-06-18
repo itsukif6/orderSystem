@@ -62,7 +62,18 @@
   justify-content: center;
   align-items: center;
 }
-#staff-password-text{
+
+#staff-password-text {
   color: aliceblue;
   font-size: 1.3rem;
 }
+
+/* #empty-component2 {
+  margin-left: 7rem;
+  margin-bottom: 2rem;
+  .css-dev-only-do-not-override-1kuana8.ant-empty {
+    .ant-empty-description {
+      color: rgb(255, 255, 255);
+    }
+  }
+} */

@@ -13,9 +13,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import preparingImg from "./preparing.png";
-import deliveringImg from "./delivering.png";
-import completeImg from "./complete.jpg";
+import { Empty } from "antd";
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -111,7 +110,8 @@ function Order() {
   const [price, setPrice] = useState(null);
   // useState hook to get Order Data
   const [orderData, setOrderData] = useState(null);
-  console.log(orderData);
+  // console.log(orderData);
+
   useEffect(() => {
     getDeliveryStatus();
     getPrice();
@@ -160,15 +160,18 @@ function Order() {
   };
 
   // time settings
-  if (orderData) {
-    var username = orderData[0];
-    var time = orderData[16];
-    var timeYY = time.substring(0, 4);
-    var timeMM = time.substring(5, 7);
-    var timeDD = time.substring(8, 10);
-    var timeHour = time.substring(11, 13);
-    var timeMinute = time.substring(14, 16);
-    var timeSecond = time.substring(17, 19);
+  if (orderData !== null) {
+    if (orderData !== "false") {
+      console.log(orderData);
+      var username = orderData[0];
+      var time = orderData[16];
+      var timeYY = time.substring(0, 4);
+      var timeMM = time.substring(5, 7);
+      var timeDD = time.substring(8, 10);
+      var timeHour = time.substring(11, 13);
+      var timeMinute = time.substring(14, 16);
+      var timeSecond = time.substring(17, 19);
+    }
   }
 
   // Delivery status
@@ -209,6 +212,15 @@ function Order() {
       } else {
         return 0;
       }
+    }
+  };
+
+  const isOrderEmpty = () => {
+    console.log(orderData)
+    if (orderData === null || orderData === undefined || orderData === "false") {
+      return true; // Cart is empty if it's null or undefined
+    } else {
+      return false; // Cart is not empty if it's any other value
     }
   };
 
@@ -285,236 +297,206 @@ function Order() {
       </div>
       {/* main component */}
       <div className="order-componenets">
-        {/* <h1 id="order-data-text">訂單資訊頁面</h1>
-        <div className="food-status">
-          {DeliveryStatus === 1 ? (
-            <div className="food-status-component">
-              <div className="food-img">
-                <img
-                  src={preparingImg}
-                  alt="preparingImg"
-                  className="food-status-img"
-                ></img>
-              </div>
-              <h2 className="order-status-text">餐點準備中</h2>
-            </div>
-          ) : DeliveryStatus === 2 ? (
-            <div>
-              <img
-                src={deliveringImg}
-                alt="deliveringImg"
-                className="food-status-img"
-              ></img>
-              <h2 className="order-status-text">餐點運送中</h2>
-            </div>
-          ) : (
-            <div>
-              <img
-                src={completeImg}
-                alt="completeImg"
-                className="food-status-img"
-              ></img>
-              <h2 className="order-status-text">餐點已送達</h2>
-            </div>
-          )}
-        </div> */}
-        {/* <div id="cut-line"></div> */}
-        {/* <div id="order-price-component">
-          <div id="order-price-text">
-            <h2 id="price-text-h2">訂單金額:{price}</h2>
+        {isOrderEmpty() ? (
+          // if no Order in this username, show empty icon
+          <div id="empty-component">
+            <Empty />
           </div>
-        </div> */}
-        <div id="order-info">
-          <h1 className="order-info-text">訂購人</h1>
-          <h1 className="order-info-text">訂單時間</h1>
-          <h1 className="order-info-text">訂單內容</h1>
-          <h1 className="order-info-text">訂單狀態</h1>
-          <h1 className="order-info-text">總金額</h1>
-        </div>
-        <div id="user-info">
-          <h1 className="user-info-text">{username}</h1>
-          <h1 className="user-info-text">
-            {timeYY}年&thinsp;
-            {timeMM}月&thinsp;
-            {timeDD}日&thinsp;
-            {timeHour}時&thinsp;
-            {timeMinute}分&thinsp;
-            {timeSecond}秒&thinsp;
-          </h1>
-          <h1 className="user-info-text">
-            <React.Fragment>
-              <Button
-                id="show-info-button"
-                variant="outlined"
-                onClick={handleClickOpen}
-              >
-                顯示資訊
-              </Button>
-              <Dialog
-                open={open}
-                TransitionComponent={Transition}
-                keepMounted
-                onClose={handleClose}
-                aria-describedby="alert-dialog-slide-description"
-              >
-                <DialogTitle>{"訂單資訊"}</DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-slide-description">
-                    <div className="info-comtainer">
-                      {foodEmpty(1) !== 0 ||
-                      foodEmpty(2) !== 0 ||
-                      foodEmpty(3) !== 0 ||
-                      foodEmpty(4) !== 0 ||
-                      foodEmpty(5) !== 0 ? (
-                        <div>
-                          <>&ensp; 主食 :</>
-                          <div>
-                            {foodEmpty(1) ? (
-                              <>&ensp; &emsp; 烤雞 : {orderData[1]} 份</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(2) ? (
-                              <>&ensp; &emsp; 披薩 : {orderData[2]} 份</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(3) ? (
-                              <>&ensp; &emsp; 牛排 : {orderData[3]} 份</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(4) ? (
-                              <>&ensp; &emsp; 辣炒年糕 : {orderData[4]} 份</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(5) ? (
-                              <>&ensp; &emsp; 龍蝦 : {orderData[5]} 份</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
+        ) : (
+          <div>
+            <div id="order-info">
+              <h1 className="order-info-text">訂購人</h1>
+              <h1 className="order-info-text">訂單時間</h1>
+              <h1 className="order-info-text">訂單內容</h1>
+              <h1 className="order-info-text">訂單狀態</h1>
+              <h1 className="order-info-text">總金額</h1>
+            </div>
+            <div id="user-info">
+              <h1 className="user-info-text">{username}</h1>
+              <h1 className="user-info-text">
+                {timeYY}年&thinsp;
+                {timeMM}月&thinsp;
+                {timeDD}日&thinsp;
+                {timeHour}時&thinsp;
+                {timeMinute}分&thinsp;
+                {timeSecond}秒&thinsp;
+              </h1>
+              <h1 className="user-info-text">
+                <React.Fragment>
+                  <Button
+                    id="show-info-button"
+                    variant="outlined"
+                    onClick={handleClickOpen}
+                  >
+                    顯示資訊
+                  </Button>
+                  <Dialog
+                    open={open}
+                    TransitionComponent={Transition}
+                    keepMounted
+                    onClose={handleClose}
+                    aria-describedby="alert-dialog-slide-description"
+                  >
+                    <DialogTitle>{"訂單資訊"}</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-slide-description">
+                        <div className="info-comtainer">
+                          {foodEmpty(1) !== 0 ||
+                            foodEmpty(2) !== 0 ||
+                            foodEmpty(3) !== 0 ||
+                            foodEmpty(4) !== 0 ||
+                            foodEmpty(5) !== 0 ? (
+                            <div>
+                              <>&ensp; 主食 :</>
+                              <div>
+                                {foodEmpty(1) ? (
+                                  <>&ensp; &emsp; 烤雞 : {orderData[1]} 份</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(2) ? (
+                                  <>&ensp; &emsp; 披薩 : {orderData[2]} 份</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(3) ? (
+                                  <>&ensp; &emsp; 牛排 : {orderData[3]} 份</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(4) ? (
+                                  <>&ensp; &emsp; 辣炒年糕 : {orderData[4]} 份</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(5) ? (
+                                  <>&ensp; &emsp; 龍蝦 : {orderData[5]} 份</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                            </div>
+                          ) : (
+                            <></>
+                          )}
                         </div>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                    <div className="info-comtainer">
-                      {foodEmpty(6) !== 0 ||
-                      foodEmpty(7) !== 0 ||
-                      foodEmpty(8) !== 0 ||
-                      foodEmpty(9) !== 0 ||
-                      foodEmpty(10) !== 0 ? (
-                        <div>
-                          <>&ensp; 飲料 :</>
-                          <div>
-                            {foodEmpty(6) ? (
-                              <>&emsp; &emsp; 可樂 : {orderData[6]} 杯</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(7) ? (
-                              <>&ensp; &emsp; 綠茶 : {orderData[7]} 杯</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(8) ? (
-                              <>&ensp; &emsp; 珍珠奶茶 : {orderData[8]} 杯</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(9) ? (
-                              <>&ensp; &emsp; 紅茶 : {orderData[9]} 杯</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(10) ? (
-                              <>&ensp; &emsp; 蜂蜜 : {orderData[10]} 杯</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
+                        <div className="info-comtainer">
+                          {foodEmpty(6) !== 0 ||
+                            foodEmpty(7) !== 0 ||
+                            foodEmpty(8) !== 0 ||
+                            foodEmpty(9) !== 0 ||
+                            foodEmpty(10) !== 0 ? (
+                            <div>
+                              <>&ensp; 飲料 :</>
+                              <div>
+                                {foodEmpty(6) ? (
+                                  <>&emsp; &emsp; 可樂 : {orderData[6]} 杯</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(7) ? (
+                                  <>&ensp; &emsp; 綠茶 : {orderData[7]} 杯</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(8) ? (
+                                  <>&ensp; &emsp; 珍珠奶茶 : {orderData[8]} 杯</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(9) ? (
+                                  <>&ensp; &emsp; 紅茶 : {orderData[9]} 杯</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(10) ? (
+                                  <>&ensp; &emsp; 蜂蜜 : {orderData[10]} 杯</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                            </div>
+                          ) : (
+                            <></>
+                          )}
                         </div>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                    <div className="info-comtainer">
-                      {foodEmpty(11) !== 0 ||
-                      foodEmpty(12) !== 0 ||
-                      foodEmpty(13) !== 0 ||
-                      foodEmpty(14) !== 0 ||
-                      foodEmpty(15) !== 0 ? (
-                        <div>
-                          <>&ensp; 甜點 : </>
-                          <div>
-                            {foodEmpty(11) ? (
-                              <>&ensp; &emsp; 甜甜圈 : {orderData[11]} 份</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(12) ? (
-                              <>&ensp; &emsp; 冰淇淋 : {orderData[12]} 份</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(13) ? (
-                              <>&ensp; &emsp; 棉花糖 : {orderData[13]} 份</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(14) ? (
-                              <>&ensp; &emsp; 巧克力 : {orderData[14]} 份</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div>
-                            {foodEmpty(15) ? (
-                              <>&ensp; &emsp; 特別甜點 : {orderData[15]} 份</>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
+                        <div className="info-comtainer">
+                          {foodEmpty(11) !== 0 ||
+                            foodEmpty(12) !== 0 ||
+                            foodEmpty(13) !== 0 ||
+                            foodEmpty(14) !== 0 ||
+                            foodEmpty(15) !== 0 ? (
+                            <div>
+                              <>&ensp; 甜點 : </>
+                              <div>
+                                {foodEmpty(11) ? (
+                                  <>&ensp; &emsp; 甜甜圈 : {orderData[11]} 份</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(12) ? (
+                                  <>&ensp; &emsp; 冰淇淋 : {orderData[12]} 份</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(13) ? (
+                                  <>&ensp; &emsp; 棉花糖 : {orderData[13]} 份</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(14) ? (
+                                  <>&ensp; &emsp; 巧克力 : {orderData[14]} 份</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div>
+                                {foodEmpty(15) ? (
+                                  <>&ensp; &emsp; 特別甜點 : {orderData[15]} 份</>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                            </div>
+                          ) : (
+                            <></>
+                          )}
                         </div>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleClose}>確定</Button>
-                </DialogActions>
-              </Dialog>
-            </React.Fragment>
-          </h1>
-          <h1 className="user-info-text">{DeliveryText}</h1>
-          <h1 className="user-info-text">{price}</h1>
-        </div>
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose}>確定</Button>
+                    </DialogActions>
+                  </Dialog>
+                </React.Fragment>
+              </h1>
+              <h1 className="user-info-text">{DeliveryText}</h1>
+              <h1 className="user-info-text">{price}</h1>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

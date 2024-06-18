@@ -7,14 +7,19 @@ let headers = {
   "Content-Type": "application/json",
   Accept: "application/json",
 };
+
 function Staff() {
+  const [orderData, setOrderData] = useState(null);
   const [DeliveryStatus, setDeliveryStatus] = useState(1);
   const [Username, setUsername] = useState(null);
   const [submitStatus, setsubmitStatus] = useState(DeliveryStatus);
-  // title
+
+
   useEffect(() => {
+    getOrderData();
     getDeliveryStatus();
     getUsername();
+    // title
     document.title = "Staff setting page";
   }, []);
 
@@ -31,6 +36,19 @@ function Staff() {
       });
   };
 
+  // get Delivery Status
+  const getOrderData = () => {
+    // get Order
+    fetch("http://localhost:5000/getOrder")
+      .then((response) => response.json())
+      .then((data) => {
+
+        setOrderData(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   // get Delivery Status
   const getUsername = () => {
@@ -119,8 +137,8 @@ function Staff() {
   const delay = millis => new Promise((resolve, reject) => {
     setTimeout(_ => resolve(), millis)
   });
-  
-  
+
+
   // submit status change submit
   const changeStatus = async () => {
     console.log("submitStatus", submitStatus);
@@ -138,62 +156,71 @@ function Staff() {
     };
   };
 
+  const checkPassword = () => {
+    if (value === 12345678) {
+      console.log("1");
+    }
+  };
+
+  console.log(orderData)
   return (
     <div id="welcome-component">
-      {showPasswordComponent && (
-        <div id="password">
-          <form onSubmit={handleSubmit} id="staff-password-component">
-            <p id="staff-password-text">請輸入密碼:</p>
-            <input value={value} onInput={handleStaffPasswordInput} required type="text" id="staff-password" />
-            <button type="submit" id="staff-password-submit-button">送出</button>
-          </form>
-          {result && <p>{result}</p>}
-        </div>
-      )}
-      {showChangeInput && (
-        <div id="change-input">
-          <div id="text-component">
-            <h1 className="username-text">更改使用狀態:</h1>
-            <h1 className="username-text">
-              使用者: {Username ? Username : <>沒有使用者</>}
-            </h1>
+      <>
+        {showPasswordComponent && (
+          <div id="password">
+            <form onSubmit={handleSubmit} id="staff-password-component">
+              <p id="staff-password-text">請輸入密碼:</p>
+              <input value={value} onInput={handleStaffPasswordInput} required type="text" id="staff-password" />
+              <button type="submit" id="staff-password-submit-button">送出</button>
+            </form>
+            {result && <p>{result}</p>}
           </div>
-          {Username !== null ? (
-            <>
-              <Space wrap>
-                <Select
-                  defaultValue={getDeliveryStatusText(DeliveryStatus)}
-                  style={{
-                    width: 120,
-                  }}
-                  onChange={handleChange}
-                  options={[
-                    {
-                      value: "準備中",
-                      label: "準備中",
-                    },
-                    {
-                      value: "遞送中",
-                      label: "遞送中",
-                    },
-                    {
-                      value: "已送達",
-                      label: "已送達",
-                    },
-                  ]}
-                />
-              </Space>
-              <Flex gap="small" wrap>
-                <Button type="primary" onClick={changeStatus}>
-                  確定
-                </Button>
-              </Flex>
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
-      )}
+        )}
+        {/* {checkPassword} */}
+        {showChangeInput && (
+          <div id="change-input">
+            <div id="text-component">
+              <h1 className="username-text">更改使用狀態:</h1>
+              <h1 className="username-text">
+                使用者: {(orderData !== "false") ? Username : <>沒有使用者</>}
+              </h1>
+            </div>
+            {Username !== null ? (
+              <>
+                <Space wrap>
+                  <Select
+                    defaultValue={getDeliveryStatusText(DeliveryStatus)}
+                    style={{
+                      width: 120,
+                    }}
+                    onChange={handleChange}
+                    options={[
+                      {
+                        value: "準備中",
+                        label: "準備中",
+                      },
+                      {
+                        value: "遞送中",
+                        label: "遞送中",
+                      },
+                      {
+                        value: "已送達",
+                        label: "已送達",
+                      },
+                    ]} />
+                </Space>
+                <Flex gap="small" wrap>
+                  <Button type="primary" onClick={changeStatus}>
+                    確定
+                  </Button>
+                </Flex>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+        )}
+      </>
     </div>
   );
 }

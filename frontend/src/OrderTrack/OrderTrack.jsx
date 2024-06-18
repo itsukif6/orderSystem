@@ -9,6 +9,7 @@ import { Menu } from "antd";
 import preparingImg from "./preparing.png";
 import deliveringImg from "./delivering.png";
 import completeImg from "./complete.jpg";
+import { Empty } from "antd";
 
 const items = [
   {
@@ -102,8 +103,9 @@ function OrderTrack() {
   const [price, setPrice] = useState(null);
 
   useEffect(() => {
-    getDeliveryStatus();
     getPrice();
+    getDeliveryStatus();
+
     // title
     document.title = "Order Track";
   }, []);
@@ -140,6 +142,15 @@ function OrderTrack() {
     fetch("http://localhost:5000/logOut")
       .then((response) => response.json())
       .then((data) => this.setState({ totalReactPackages: data.total }));
+  };
+
+  const isOrderEmpty = () => {
+    console.log(price)
+    if (price === null || price === undefined || price === false) {
+      return true; // Cart is empty if it's null or undefined
+    } else {
+      return false; // Cart is not empty if it's any other value
+    }
   };
 
   const onClickMenu = (e) => {
@@ -215,45 +226,49 @@ function OrderTrack() {
       </div>
       {/* main component */}
       <div className="ordertrack-componenet">
-        <h1 id="ordertrack-data-text">訂單送餐狀態頁面</h1>
-        <div className="food-status">
-          {DeliveryStatus === 1 ? (
-            <div className="food-status-component">
-              <div className="food-img">
+        {isOrderEmpty() ? (
+          // if no Order in this username, show empty icon
+          <div id="empty-component1">
+            <Empty />
+          </div>
+        ) : (
+          <><h1 id="ordertrack-data-text">訂單送餐狀態頁面</h1><div className="food-status">
+            {DeliveryStatus === 1 ? (
+              <div className="food-status-component">
+                <div className="food-img">
+                  <img
+                    src={preparingImg}
+                    alt="preparingImg"
+                    className="food-status-img"
+                  ></img>
+                </div>
+                <h2 className="ordertrack-status-text">餐點準備中</h2>
+              </div>
+            ) : DeliveryStatus === 2 ? (
+              <div>
                 <img
-                  src={preparingImg}
-                  alt="preparingImg"
+                  src={deliveringImg}
+                  alt="deliveringImg"
                   className="food-status-img"
                 ></img>
+                <h2 className="ordertrack-status-text">餐點運送中</h2>
               </div>
-              <h2 className="ordertrack-status-text">餐點準備中</h2>
-            </div>
-          ) : DeliveryStatus === 2 ? (
-            <div>
-              <img
-                src={deliveringImg}
-                alt="deliveringImg"
-                className="food-status-img"
-              ></img>
-              <h2 className="ordertrack-status-text">餐點運送中</h2>
-            </div>
-          ) : (
-            <div>
-              <img
-                src={completeImg}
-                alt="completeImg"
-                className="food-status-img"
-              ></img>
-              <h2 className="ordertrack-status-text">餐點已送達</h2>
-            </div>
-          )}
-        </div>
-        <div id="cut-line"></div>
-        <div id="ordertrack-price-component">
-          <div id="ordertrack-price-text">
-            <h2 id="price-text-h2">訂單金額:{price}</h2>
-          </div>
-        </div>
+            ) : (
+              <div>
+                <img
+                  src={completeImg}
+                  alt="completeImg"
+                  className="food-status-img"
+                ></img>
+                <h2 className="ordertrack-status-text">餐點已送達</h2>
+              </div>
+            )}
+          </div><div id="cut-line"></div><div id="ordertrack-price-component">
+              <div id="ordertrack-price-text">
+                <h2 id="price-text-h2">訂單金額:{price}</h2>
+              </div>
+            </div></>
+        )}
       </div>
     </div>
   );

@@ -149,3 +149,7 @@ svg {
 .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
   font-size: large;
 }
+
+.css-dev-only-do-not-override-1kuana8.ant-empty{
+  margin-right: 3rem;
+}
