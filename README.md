@@ -20,8 +20,11 @@ How to open:
 >   * cd to ```backend/orderSystemVenv``` and ```Scripts/Activate.ps1```.  
 >   * Then use ```pip install -r requirements.txt``` to download my module for back end.  
   
-  4. Open project:  
+  4. Open project:
+  
   > * cd to ```frontend/src``` and command ```npm start```.  
   > * cd to ```backend/orderSystemVenv``` and command ```flask run```.  
-    
+
+  5. 
+   > * default staff password is ```12345678```.
 ---
