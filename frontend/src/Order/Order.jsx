@@ -105,7 +105,7 @@ const items = [
 
 function Order() {
   // useState hook to get Delivery Status state
-  const [DeliveryStatus, setDeliveryStatus] = useState(1);
+  const [DeliveryStatus, setDeliveryStatus] = useState(0);
   // useState hook to manage price
   const [price, setPrice] = useState(null);
   // useState hook to get Order Data
@@ -162,7 +162,7 @@ function Order() {
   // time settings
   if (orderData !== null) {
     if (orderData !== "false") {
-      console.log(orderData);
+      // console.log(orderData);
       var username = orderData[0];
       var time = orderData[16];
       var timeYY = time.substring(0, 4);
@@ -175,13 +175,14 @@ function Order() {
   }
 
   // Delivery status
-  var DeliveryText;
+  var DeliveryText = "餐點準備中";
   if (DeliveryStatus) {
-    if (DeliveryStatus === 1) {
+    console.log(DeliveryStatus);
+    if (DeliveryStatus == 0) {
       DeliveryText = "餐點準備中";
-    } else if (DeliveryStatus === 2) {
+    } else if (DeliveryStatus === 1) {
       DeliveryText = "餐點運送中";
-    } else if (DeliveryStatus === 3) {
+    } else if (DeliveryStatus === 2) {
       DeliveryText = "餐點已送達";
     }
   }
@@ -216,8 +217,12 @@ function Order() {
   };
 
   const isOrderEmpty = () => {
-    console.log(orderData)
-    if (orderData === null || orderData === undefined || orderData === "false") {
+    // console.log(orderData);
+    if (
+      orderData === null ||
+      orderData === undefined ||
+      orderData === "false"
+    ) {
       return true; // Cart is empty if it's null or undefined
     } else {
       return false; // Cart is not empty if it's any other value
@@ -342,10 +347,10 @@ function Order() {
                       <DialogContentText id="alert-dialog-slide-description">
                         <div className="info-comtainer">
                           {foodEmpty(1) !== 0 ||
-                            foodEmpty(2) !== 0 ||
-                            foodEmpty(3) !== 0 ||
-                            foodEmpty(4) !== 0 ||
-                            foodEmpty(5) !== 0 ? (
+                          foodEmpty(2) !== 0 ||
+                          foodEmpty(3) !== 0 ||
+                          foodEmpty(4) !== 0 ||
+                          foodEmpty(5) !== 0 ? (
                             <div>
                               <>&ensp; 主食 :</>
                               <div>
@@ -371,7 +376,9 @@ function Order() {
                               </div>
                               <div>
                                 {foodEmpty(4) ? (
-                                  <>&ensp; &emsp; 辣炒年糕 : {orderData[4]} 份</>
+                                  <>
+                                    &ensp; &emsp; 辣炒年糕 : {orderData[4]} 份
+                                  </>
                                 ) : (
                                   <></>
                                 )}
@@ -390,10 +397,10 @@ function Order() {
                         </div>
                         <div className="info-comtainer">
                           {foodEmpty(6) !== 0 ||
-                            foodEmpty(7) !== 0 ||
-                            foodEmpty(8) !== 0 ||
-                            foodEmpty(9) !== 0 ||
-                            foodEmpty(10) !== 0 ? (
+                          foodEmpty(7) !== 0 ||
+                          foodEmpty(8) !== 0 ||
+                          foodEmpty(9) !== 0 ||
+                          foodEmpty(10) !== 0 ? (
                             <div>
                               <>&ensp; 飲料 :</>
                               <div>
@@ -412,7 +419,9 @@ function Order() {
                               </div>
                               <div>
                                 {foodEmpty(8) ? (
-                                  <>&ensp; &emsp; 珍珠奶茶 : {orderData[8]} 杯</>
+                                  <>
+                                    &ensp; &emsp; 珍珠奶茶 : {orderData[8]} 杯
+                                  </>
                                 ) : (
                                   <></>
                                 )}
@@ -438,10 +447,10 @@ function Order() {
                         </div>
                         <div className="info-comtainer">
                           {foodEmpty(11) !== 0 ||
-                            foodEmpty(12) !== 0 ||
-                            foodEmpty(13) !== 0 ||
-                            foodEmpty(14) !== 0 ||
-                            foodEmpty(15) !== 0 ? (
+                          foodEmpty(12) !== 0 ||
+                          foodEmpty(13) !== 0 ||
+                          foodEmpty(14) !== 0 ||
+                          foodEmpty(15) !== 0 ? (
                             <div>
                               <>&ensp; 甜點 : </>
                               <div>
@@ -474,7 +483,9 @@ function Order() {
                               </div>
                               <div>
                                 {foodEmpty(15) ? (
-                                  <>&ensp; &emsp; 特別甜點 : {orderData[15]} 份</>
+                                  <>
+                                    &ensp; &emsp; 特別甜點 : {orderData[15]} 份
+                                  </>
                                 ) : (
                                   <></>
                                 )}
