@@ -8,6 +8,7 @@ import Order from "./Order/Order";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
 import OrderTrack from "./OrderTrack/OrderTrack";
 import Staff from "./Staff/Staff";
+import ForgetPassword from "./ForgetPassword/ForgetPassword";
 import "./App.css";
 
 const App = () => {
@@ -43,6 +44,10 @@ const App = () => {
     {
       path: "/Staff",
       element: <Staff />,
+    },
+    {
+      path: "/ForgetPassword",
+      element: <ForgetPassword />,
     },
   ]);
 

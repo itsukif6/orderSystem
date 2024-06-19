@@ -46,6 +46,10 @@ const App = () => {
     window.location.assign("http://localhost:3000/Register");
   };
 
+  const goForgetPW = () => {
+    window.location.assign("http://localhost:3000/ForgetPassword");
+  };
+  
   // title
   useEffect(() => {
     document.title = 'Login Page';
@@ -90,12 +94,12 @@ const App = () => {
             ]}
           >
             <div>
-              <Input
+              <Input 
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
                 placeholder="Password"
               />
-              <a className="login-form-forgot" href="">
+              <a className="login-form-forgot" href="#" onClick={goForgetPW}>
                 Forgot password?
               </a>
             </div>

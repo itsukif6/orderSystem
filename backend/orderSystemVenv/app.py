@@ -8,6 +8,16 @@ db = DB()
 app = Flask(__name__)
 CORS(app)
 
+from flask_mail import Mail, Message
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = 's2mplenote.nknu@gmail.com'  # Use your actual Gmail address
+app.config['MAIL_PASSWORD'] = 'fkfs igrw bjxz yzkj'     # Use your generated App Password
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+mail = Mail(app)
+
 @app.route('/')
 def index():
     return "Hello World!"
@@ -177,5 +187,26 @@ def deleteDelivery():
             return ("true")
         else:
             return ("false")
+        
+@app.route("/email", methods=['POST'])
+def email():
+    if request.method == "POST":
+        data = request.json
+        user_email = data.get("user_email")
+        username = data.get("username")
+        user_password = db.getPassword(username)
+        if user_password != False:
+            # print(user_email, username, user_password)
+            msg = Message(
+                subject='Your Password!', 
+                sender='s2mplenote.nknu@gmail.com',  # Ensure this matches MAIL_USERNAME
+                recipients=[user_email]  # Replace with actual recipient's email
+            )
+            msg.body = "Your Password is "+user_password+"!"
+            mail.send(msg)
+            return jsonify({"user_password": user_password})
+        else:
+            return jsonify("false")
+        
 if __name__ == '__main__':
     app.run(debug=True)

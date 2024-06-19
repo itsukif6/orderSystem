@@ -518,6 +518,19 @@ class DB:
             print("Error:", e)
             return e
 
+    def getPassword(self, inputUsername):
+        try:
+            self.cursor.execute(
+                "SELECT password FROM UserData WHERE username = ?;", (inputUsername,)
+            )
+            row = self.cursor.fetchone()
+            if row:
+                return row[0]  # Return the password
+            else:
+                return False  # Username not found
+        except sqlite3.Error as e:
+            print(e)
+            return e
 
 # test DB methods
 if __name__ == "__main__":
