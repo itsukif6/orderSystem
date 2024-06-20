@@ -406,7 +406,7 @@ class DB:
                 "INSERT INTO DeliveryData (username, status, time) VALUES (?, ?, ?);",
                 (
                     username,
-                    1,
+                    0,
                     time,
                 ),
             ):
